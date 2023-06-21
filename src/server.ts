@@ -9,8 +9,7 @@ import helmet from 'helmet'
 import dotenv from 'dotenv'
 import dotenvExpand from 'dotenv-expand'
 /* -------------------------------------------------------------------------- */
-import router from './router'
-import errorHandler from './common/helpers/error/error.handler'
+import router from './routes'
 import AppError from './common/helpers/error/AppError'
 /* -------------------------------------------------------------------------- */
 
@@ -32,17 +31,24 @@ app.use(cors())
 app.use(helmet())
 app.use('/', router)
 /* -------------------------------------------------------------------------- */
-app.use((err: AppError, _, res, __) => {
-  if (err instanceof AppError)
-    return res.status(err.statusCode).json({
+app.use('*', (error: AppError, _, res, __) => {
+  if (error instanceof AppError)
+    return res.status(error.statusCode).json({
       success: false,
-      error: err.cause,
+      error: error.cause,
       data: null,
     })
-  else console.log('Unknown type error:', err)
+  else {
+    console.log('Unknown type error:', error)
+    return {
+      success: false,
+      error,
+      data: null,
+    }
+  }
 })
 /* -------------------------------------------------------------------------- */
 
 server
   .listen(app.get('port'))
-  .on('listening', () => console.log(`㉿HTTP:\t ${app.get('server_address')}`))
+  .on('listening', () => console.log(`🧩 HTTP:\t ${app.get('server_address')}`))
