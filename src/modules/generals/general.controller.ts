@@ -6,8 +6,8 @@ import errorHandler from '../../common/helpers/error/error.handler'
 
 @BindInstance
 class GeneralController {
-  checkHealth(_, res, next): { message: string } | void {
-    const result = generalService.checkHealth()
+  healthCheck(_, res, next): { message: string } | void {
+    const result = generalService.healthCheck()
     return res.json(result)
     errorHandler({ statusCode: 400 })
   }

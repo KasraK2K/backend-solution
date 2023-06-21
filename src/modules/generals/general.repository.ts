@@ -7,7 +7,7 @@ import { selectQuery } from './general.query'
 /* -------------------------------------------------------------------------- */
 
 class GeneralRepository {
-  public checkHealth(): { message: string } | void {
+  public healthCheck(): { message: string } | void {
     return { message: selectQuery({ selectFields: ['name', 'age'] }) }
     errorHandler({ statusCode: 403 })
   }

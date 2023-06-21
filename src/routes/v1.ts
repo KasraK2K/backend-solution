@@ -5,6 +5,6 @@ const router = express.Router()
 import generalController from '../modules/generals/general.controller'
 /* -------------------------------------------------------------------------- */
 
-router.get('/', generalController.checkHealth)
+router.get('/', generalController.healthCheck)
 
 export default router
