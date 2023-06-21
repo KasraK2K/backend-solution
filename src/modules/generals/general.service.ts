@@ -5,8 +5,8 @@ import errorHandler from '../../common/helpers/error/error.handler'
 /* -------------------------------------------------------------------------- */
 
 class GeneralService {
-  checkHealth(): { message: string } | void {
-    return generalRepository.checkHealth()
+  healthCheck(): { message: string } | void {
+    return generalRepository.healthCheck()
     errorHandler({ statusCode: 401 })
   }
 }
