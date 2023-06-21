@@ -1,8 +1,9 @@
 /* --------------------------------- Module --------------------------------- */
 import AppError, { IErrorOpt } from './AppError'
 import errorFilePath from './errorFilePath'
+/* -------------------------------------------------------------------------- */
 
-const errorHandler = (opt: IErrorOpt) => {
+const errorHandler = (opt: IErrorOpt): void => {
   // Fill needed Constants
   const { statusCode, message, batch_messages } = opt
   const { code, message: defaultMessage } = getErrorObject(statusCode)!
