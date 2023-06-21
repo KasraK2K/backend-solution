@@ -1,0 +1,83 @@
+{
+  "todotree": {
+    "tree": [
+      {
+        "key": 1687336691926,
+        "children": [],
+        "todo": {
+          "content": "Create logger with winstone or something better",
+          "id": 1687336691926,
+          "level": "default",
+          "done": false,
+          "start": 1687336691926
+        }
+      },
+      {
+        "key": 1687336706775,
+        "children": [],
+        "todo": {
+          "content": "Create needed integrations (mailgun, firebase, prometheus)",
+          "id": 1687336706775,
+          "level": "default",
+          "done": false,
+          "start": 1687336706775
+        }
+      },
+      {
+        "key": 1687336743816,
+        "children": [],
+        "todo": {
+          "content": "Create PostgreSQL Pool",
+          "id": 1687336743816,
+          "level": "default",
+          "done": false,
+          "start": 1687336743816
+        }
+      },
+      {
+        "key": 1687336809016,
+        "children": [],
+        "todo": {
+          "content": "Create Mongodb connection",
+          "id": 1687336809016,
+          "level": "default",
+          "done": false,
+          "start": 1687336809016
+        }
+      },
+      {
+        "key": 1687336863352,
+        "children": [],
+        "todo": {
+          "content": "Use Chalk",
+          "id": 1687336863352,
+          "level": "default",
+          "done": false,
+          "start": 1687336863352
+        }
+      },
+      {
+        "key": 1687336903836,
+        "children": [],
+        "todo": {
+          "content": "Use NPM Request-ID",
+          "id": 1687336903836,
+          "level": "default",
+          "done": false,
+          "start": 1687336903836
+        }
+      }
+    ],
+    "expandKeys": [],
+    "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
+    "add_mode": "bottom",
+    "virtual": false,
+    "showLine": false,
+    "playFontSize": 24,
+    "title": "task",
+    "autoSort": false,
+    "showEndTime": false,
+    "lang": "en",
+    "version": "1687336916294"
+  }
+}
