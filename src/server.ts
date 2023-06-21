@@ -8,6 +8,8 @@ import cors from 'cors'
 import helmet from 'helmet'
 import dotenv from 'dotenv'
 import dotenvExpand from 'dotenv-expand'
+/* -------------------------------------------------------------------------- */
+import router from './router'
 import errorHandler from './common/helpers/error/error.handler'
 import AppError from './common/helpers/error/AppError'
 /* -------------------------------------------------------------------------- */
@@ -19,22 +21,17 @@ const app = express()
 const server = http.createServer(app)
 const port = process.env.PORT || '3000'
 
+/* -------------------------------------------------------------------------- */
 app.set('port', port)
 app.set('server_address', process.env.SERVER_ADDRESS)
-
+/* -------------------------------------------------------------------------- */
 app.use(methodOverride())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(helmet())
-
-// Router
-app.get('/', (req, res) => {
-  // errorHandler({ statusCode: 404 })
-  return res.json({ message: 'hi' })
-})
-
-// Catch Error
+app.use('/', router)
+/* -------------------------------------------------------------------------- */
 app.use((err: AppError, _, res, __) => {
   if (err instanceof AppError)
     return res.status(err.statusCode).json({
@@ -44,6 +41,7 @@ app.use((err: AppError, _, res, __) => {
     })
   else console.log('Unknown type error:', err)
 })
+/* -------------------------------------------------------------------------- */
 
 server
   .listen(app.get('port'))
