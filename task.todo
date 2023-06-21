@@ -66,6 +66,28 @@
           "done": false,
           "start": 1687336903836
         }
+      },
+      {
+        "key": 1687357547185,
+        "children": [],
+        "todo": {
+          "content": "Use Knex or better orm to easy crud",
+          "id": 1687357547185,
+          "level": "default",
+          "done": false,
+          "start": 1687357547186
+        }
+      },
+      {
+        "key": 1687357904956,
+        "children": [],
+        "todo": {
+          "content": "Use Winstone or better",
+          "id": 1687357904956,
+          "level": "default",
+          "done": false,
+          "start": 1687357904956
+        }
       }
     ],
     "expandKeys": [],
@@ -78,6 +100,6 @@
     "autoSort": false,
     "showEndTime": false,
     "lang": "en",
-    "version": "1687336916294"
+    "version": "1687357917140"
   }
 }

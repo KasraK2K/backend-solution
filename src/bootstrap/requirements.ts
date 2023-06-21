@@ -4,8 +4,8 @@ import errorHandler from '../common/helpers/error/error.handler'
 const REQUIRED_ENVIRONMENTS: string[] = [
   'NODE_ENV',
   'PORT',
+  'SERVER_ADDRESS',
   // 'MONGO_URI',
-  // 'SERVER_ADDRESS',
   // 'METRIC_PORT',
   // 'SENTRY_DSN',
 ]

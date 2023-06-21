@@ -20,7 +20,7 @@ const server = http.createServer(app)
 const port = process.env.PORT || '3000'
 
 app.set('port', port)
-app.set('domain', 'http://localhost:3000')
+app.set('server_address', process.env.SERVER_ADDRESS)
 
 app.use(methodOverride())
 app.use(express.json())
@@ -45,4 +45,6 @@ app.use((err: AppError, _, res, __) => {
   else console.log('Unknown type error:', err)
 })
 
-server.listen(app.get('port')).on('listening', () => console.log(`㉿HTTP:\t ${app.get('domain')}`))
+server
+  .listen(app.get('port'))
+  .on('listening', () => console.log(`㉿HTTP:\t ${app.get('server_address')}`))
