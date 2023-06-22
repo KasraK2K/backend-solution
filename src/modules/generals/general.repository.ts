@@ -1,6 +1,6 @@
 /* ------------------------------ Dependencies ------------------------------ */
 import fs from 'node:fs'
-/* --------------------------------- Modules -------------------------------- */
+/* ----------------------------- Custom Modules ----------------------------- */
 import errorHandler from '../../common/helpers/error/error.handler'
 import { selectQuery } from './general.query'
 // import sqlReader from '../../common/helpers/sqlReader'
@@ -8,8 +8,8 @@ import { selectQuery } from './general.query'
 
 class GeneralRepository {
   public healthCheck(): { message: string } | void {
-    return { message: selectQuery({ selectFields: ['name', 'age'] }) }
     errorHandler({ statusCode: 403 })
+    return { message: selectQuery({ selectFields: ['name', 'age'] }) }
   }
 }
 
