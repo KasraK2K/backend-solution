@@ -1,5 +1,6 @@
-import { strict } from 'assert'
-import errorHandler from '../common/helpers/error/error.handler'
+/* ------------------------------ Dependencies ------------------------------ */
+import assert from 'assert'
+/* -------------------------------------------------------------------------- */
 
 const REQUIRED_ENVIRONMENTS: string[] = [
   'NODE_ENV',
@@ -10,13 +11,5 @@ const REQUIRED_ENVIRONMENTS: string[] = [
   // 'SENTRY_DSN',
 ]
 
-const environmentErrors: string[] = []
-
 for (const key of REQUIRED_ENVIRONMENTS)
-  try {
-    strict.ok(process.env[key])
-  } catch (_) {
-    environmentErrors.push(`The ${key} environment variable is required`)
-  }
-
-if (environmentErrors.length) errorHandler({ statusCode: 500, batch_messages: environmentErrors })
+  assert.ok(process.env[key], `The ${key} environment variable is required`)
