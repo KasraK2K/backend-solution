@@ -1,17 +1,19 @@
 import './bootstrap'
-/* -------------------------------------------------------------------------- */
+/* ------------------------------ Node Modules ------------------------------ */
 import http from 'node:http'
-/* -------------------------------------------------------------------------- */
+import { basename } from 'node:path'
+/* ------------------------------ Dependencies ------------------------------ */
 import express from 'express'
 import methodOverride from 'method-override'
 import cors from 'cors'
 import helmet from 'helmet'
-import chalk from 'chalk'
 import dotenv from 'dotenv'
 import dotenvExpand from 'dotenv-expand'
-/* -------------------------------------------------------------------------- */
+/* ----------------------------- Custom Modules ----------------------------- */
 import router from './routes'
 import AppError from './common/helpers/error/AppError'
+import logger from './common/helpers/logger.helper'
+import colour from './common/utils/logColour.util'
 /* -------------------------------------------------------------------------- */
 
 const env = dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
@@ -20,11 +22,6 @@ dotenvExpand.expand(env)
 const app = express()
 const server = http.createServer(app)
 const port = process.env.PORT || '3000'
-
-const loveStyle = chalk.hex('#f6009b')
-const successStyle = chalk.hex('#00FF00')
-const warnStyle = chalk.hex('#FFFF00').bold
-const errStyle = chalk.hex('#FF0000').bold
 
 /* -------------------------------------------------------------------------- */
 app.set('port', port)
@@ -45,7 +42,7 @@ app.use('*', (error: AppError, _, res, __) => {
       data: null,
     })
   else {
-    console.error(errStyle('Unknown type error:'), error)
+    logger.error(colour.red('Unknown type error:'), { dest: basename(__filename), error })
     return {
       success: false,
       error,
@@ -54,9 +51,8 @@ app.use('*', (error: AppError, _, res, __) => {
   }
 })
 /* -------------------------------------------------------------------------- */
-
-server
-  .listen(app.get('port'))
-  .on('listening', () =>
-    console.log(`${loveStyle('HTTP')}:\t ${successStyle(app.get('server_address'))}`)
-  )
+server.listen(app.get('port')).on('listening', () =>
+  logger.info(`HTTP Server is running on ${colour.love(app.get('server_address'))}`, {
+    dest: basename(__filename),
+  })
+)
