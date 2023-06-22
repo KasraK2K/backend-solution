@@ -8,8 +8,10 @@
           "content": "Create logger with winstone or something better",
           "id": 1687336691926,
           "level": "default",
-          "done": false,
-          "start": 1687336691926
+          "done": true,
+          "start": 1687336691926,
+          "focus": false,
+          "end": 1687421231253
         }
       },
       {
@@ -52,19 +54,10 @@
           "content": "Use Chalk",
           "id": 1687336863352,
           "level": "default",
-          "done": false,
-          "start": 1687336863352
-        }
-      },
-      {
-        "key": 1687336903836,
-        "children": [],
-        "todo": {
-          "content": "Use NPM Request-ID",
-          "id": 1687336903836,
-          "level": "default",
-          "done": false,
-          "start": 1687336903836
+          "done": true,
+          "start": 1687336863352,
+          "focus": false,
+          "end": 1687421239983
         }
       },
       {
@@ -85,8 +78,23 @@
           "content": "Use Winstone or better",
           "id": 1687357904956,
           "level": "default",
-          "done": false,
-          "start": 1687357904956
+          "done": true,
+          "start": 1687357904956,
+          "focus": false,
+          "end": 1687421226411
+        }
+      },
+      {
+        "key": 1687421241616,
+        "children": [],
+        "todo": {
+          "content": "Create colour function",
+          "id": 1687421241616,
+          "level": "default",
+          "done": true,
+          "start": 1687421241616,
+          "focus": false,
+          "end": 1687421255487
         }
       }
     ],
@@ -100,6 +108,6 @@
     "autoSort": false,
     "showEndTime": false,
     "lang": "en",
-    "version": "1687357917140"
+    "version": "1687421265937"
   }
 }
