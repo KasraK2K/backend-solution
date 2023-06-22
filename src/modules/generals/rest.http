@@ -1,14 +1,13 @@
-@token = {{loginAPI.response.body.message}}
+@token = {{login.response.body.message}}
 @today={{$localDatetime 'YYYY-MM-DD'}}
 
-###
-
-@name loginAPI
+# @name login
 GET {{host}}
 Content-Type: application/json
 
 ###
 
-GET {{host}} HTTP/1.1
+# @name healthCheck
+GET {{host}}
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: {{$processEnv %secretKey}}
