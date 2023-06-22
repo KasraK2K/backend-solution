@@ -1,10 +1,13 @@
+/* ------------------------------ Dependencies ------------------------------ */
 import express from 'express'
+/* ----------------------------- Custom Modules ----------------------------- */
+import generalRouter from '../modules/generals/general.routes'
+/* -------------------------------------------------------------------------- */
+
 const router = express.Router()
 
 /* ------------------------------- Controllers ------------------------------ */
-import generalController from '../modules/generals/general.controller'
+router.use('/general', generalRouter)
 /* -------------------------------------------------------------------------- */
-
-router.get('/', generalController.healthCheck)
 
 export default router
