@@ -8,6 +8,6 @@ Content-Type: application/json
 ###
 
 # @name healthCheck
-GET {{host}}
+GET {{host}}/{{token}}
 Content-Type: application/json
-Authorization: {{$processEnv %secretKey}}
+Authorization: Bearer {{token}}
