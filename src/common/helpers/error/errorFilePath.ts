@@ -15,9 +15,7 @@ const errorFilePath = (error: unknown | Error | AppError) => {
     if (hasParentheses) {
       file_path = line.slice(line.indexOf('(') + 1, line.length - 1)
       file_name = line.slice(line.lastIndexOf('/') + 1, line.indexOf(':'))
-      console.log(file_name)
     } else {
-      console.log(line)
       file_path = line.slice(line.indexOf('/'))
       file_name = line.slice(line.lastIndexOf('/') + 1, line.indexOf(':'))
     }
