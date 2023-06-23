@@ -56,7 +56,5 @@ app.use('*', (error: AppError, _, res, __) => {
 
 server.listen(app.get('port')).on('listening', () => {
   printInformation(app.get('port'))
-  logger.info(`HTTP Server is running on ${colour.love.underline(app.get('server_address'))}`, {
-    dest: basename(__filename),
-  })
+  console.log(`HTTP Server is running on ${colour.love.underline(app.get('server_address'))}`)
 })

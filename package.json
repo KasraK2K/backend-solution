@@ -8,7 +8,7 @@
     "prebuild": "rimraf build",
     "dev": "npm run kill && NODE_ENV=development ts-node-dev --transpile-only --respawn --no-notify --quiet --clear src/server.ts",
     "build": "npm run prebuild && NODE_ENV=production tsc",
-    "start": "npm run kill && NODE_ENV=production node build/server.js"
+    "start": "npm run kill && NODE_ENV=production node build/src/server.js"
   },
   "keywords": [
     "boilerplate",
