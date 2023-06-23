@@ -13,10 +13,10 @@ const errorFilePath = (error: unknown | Error | AppError) => {
     let file_name: string
 
     if (hasParentheses) {
-      file_path = line.slice(line.indexOf('(') + 1, line.length - 1)
+      file_path = line.slice(line.indexOf('(') + 1 + process.cwd().length, line.length - 1)
       file_name = line.slice(line.lastIndexOf('/') + 1, line.indexOf(':'))
     } else {
-      file_path = line.slice(line.indexOf('/'))
+      file_path = line.slice(line.indexOf('/') + process.cwd().length)
       file_name = line.slice(line.lastIndexOf('/') + 1, line.indexOf(':'))
     }
 

@@ -1,21 +1,37 @@
 export interface IErrorOpt {
-  statusCode: number
-  message?: string
+  status: number
+  label: string
+  code: number | string
+  message: string
+  file?: IErrorFilePath
   batch_messages?: string[]
 }
 
-class AppError extends Error {
-  public statusCode: number
-  public cause: Record<string, any>
+export interface IErrorFilePath {
+  name: string
+  path: string
+}
 
-  constructor(opt: Omit<IErrorOpt, 'batch_messages'>) {
-    const { message, statusCode } = opt
+class AppError extends Error {
+  public status: number
+  public label: string
+  public code: number | string
+  public message: string
+  public file?: IErrorFilePath
+  public batch_messages?: string[]
+
+  constructor(opt: IErrorOpt) {
+    const { status, label, code, message, batch_messages } = opt
 
     super(message)
 
-    this.statusCode = statusCode
-    this.name = this.constructor.name
-    this.cause = Object.create(null)
+    // this.name = this.constructor.name
+    this.status = status
+    this.label = label
+    this.code = code
+    this.message = message
+    this.file = Object.create(null)
+    this.batch_messages = batch_messages
     Error.captureStackTrace(this, this.constructor)
   }
 }

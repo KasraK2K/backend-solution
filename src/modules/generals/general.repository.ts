@@ -7,9 +7,13 @@ import { selectQuery } from './general.query'
 /* -------------------------------------------------------------------------- */
 
 class GeneralRepository {
-  public healthCheck(): { message: string } | void {
-    // errorHandler({ statusCode: 403 })
-    return { message: selectQuery({ selectFields: ['name', 'age'] }) }
+  public healthCheck() {
+    return new Promise((resolve, reject) => {
+      const condition = false
+
+      if (!condition) reject(errorHandler(1000))
+      else resolve({ message: selectQuery({ selectFields: ['name', 'age'] }) })
+    })
   }
 }
 

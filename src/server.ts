@@ -39,24 +39,24 @@ app.use(helmet())
 app.use('/', router)
 app.use('*', (error: AppError, _, res, __) => {
   if (error instanceof AppError)
-    return res.status(error.statusCode).json({
+    return res.status(error.status).json({
       success: false,
-      error: error.cause,
+      error,
       data: null,
     })
   else {
     logger.error(colour.red('Unknown type error:'), { dest: basename(__filename), error })
-    return {
+    return res.status().json({
       success: false,
       error,
       data: null,
-    }
+    })
   }
 })
 
 server.listen(app.get('port')).on('listening', () => {
   printInformation(app.get('port'))
-  logger.info(`HTTP Server is running on ${colour.love(app.get('server_address'))}`, {
+  logger.info(`HTTP Server is running on ${colour.love.underline(app.get('server_address'))}`, {
     dest: basename(__filename),
   })
 })

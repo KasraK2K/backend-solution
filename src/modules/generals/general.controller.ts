@@ -1,15 +1,14 @@
 /* ------------------------------ Dependencies ------------------------------ */
+import { Request, Response } from 'express'
 /* ----------------------------- Custom Modules ----------------------------- */
+import Controller from '../../base/Controller'
 import BindInstance from '../../common/decorators/bindInstance.decorator'
 import generalService from './general.service'
-import errorHandler from '../../common/helpers/error/error.handler'
 
 @BindInstance
-class GeneralController {
-  healthCheck(_, res, next): { message: string } | void {
-    // errorHandler({ statusCode: 400 })
-    const result = generalService.healthCheck()
-    return res.json(result)
+class GeneralController extends Controller {
+  async healthCheck(req: Request, res: Response) {
+    await super.handle(generalService.healthCheck, undefined, req, res)
   }
 }
 
