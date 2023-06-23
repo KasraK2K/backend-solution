@@ -1,4 +1,6 @@
-import { BullMQ, Job, JobsOptions, JobType } from ".."
+/* ----------------------------- Custom Modules ----------------------------- */
+import { BullMQ, Job, JobsOptions, JobType } from '..'
+/* -------------------------------------------------------------------------- */
 
 class Jobs {
   constructor(private superThis: BullMQ) {}
@@ -7,7 +9,7 @@ class Jobs {
     return this.superThis.queue.add(jobName, data, opts)
   }
 
-  async getJob(jobName: string, types: JobType[] | JobType = ["wait", "delayed"]) {
+  async getJob(jobName: string, types: JobType[] | JobType = ['wait', 'delayed']) {
     const jobs = await this.superThis.queue.getJobs(types)
     const index = jobs.length && jobs.findIndex((job) => job && job.name === jobName)
 
@@ -25,7 +27,11 @@ class Jobs {
     if (job) {
       jobData = job.data
       await job.remove()
-      return this.create(jobName, data ? data : jobData, opts ? Object.assign(job.opts, opts) : job.opts)
+      return this.create(
+        jobName,
+        data ? data : jobData,
+        opts ? Object.assign(job.opts, opts) : job.opts
+      )
     } else return undefined
   }
 }

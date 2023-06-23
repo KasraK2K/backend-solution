@@ -2,12 +2,17 @@
 import { basename } from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import { Request, Response } from 'express'
+import config from 'config'
 /* ----------------------------- Custom Modules ----------------------------- */
 import logger from '../common/helpers/logger.helper'
 import { addMetaData, addMetaDataLogic } from '../common/helpers/addMetaData.helper'
 import colour from '../common/utils/logColour.util'
 import AppError from '../common/helpers/error/AppError'
+import { IApplicationConfig } from '../../config/config.interface'
 /* -------------------------------------------------------------------------- */
+
+const applicationConfig: IApplicationConfig = config.get('application')
+const mode: string = config.get('mode')
 
 type ICallback = (args: any) => any
 // type ICallback<T, Args> = (args: Args) => Promise<T> | T
@@ -37,7 +42,18 @@ class Controller {
 
         return addMetaData(req, res, result)
       })
-      .catch((error: AppError) => res.status(error.status).json({ success: false, error }))
+      .catch((error: AppError) =>
+        res.status(error.status).json({
+          success: false,
+          api_version: applicationConfig.api_version,
+          front_version: applicationConfig.front_version,
+          portal_version: applicationConfig.portal_version,
+          endpoint: req.originalUrl,
+          env: String(process.env.NODE_ENV),
+          mode,
+          error,
+        })
+      )
   }
 }
 

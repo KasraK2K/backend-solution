@@ -22,7 +22,7 @@ job:
 logger:
   logOnConsole: true
   logOnFile: false
-  logOnDatabase: true
+  logOnDatabase: false
   winston:
     dirname: "logs"
     datePattern: "YYYY-MM-DD"

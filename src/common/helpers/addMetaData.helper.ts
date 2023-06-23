@@ -1,7 +1,10 @@
-import { IApplicationConfig } from '../../../config/config.interface'
-import { Request, Response } from 'express'
+/* ------------------------------ Dependencies ------------------------------ */
 import config from 'config'
 import _ from 'lodash'
+/* ------------------------------ Custom Module ----------------------------- */
+import { IApplicationConfig } from '../../../config/config.interface'
+import { Request, Response } from 'express'
+/* -------------------------------------------------------------------------- */
 
 const applicationConfig: IApplicationConfig = config.get('application')
 const mode: string = config.get('mode')

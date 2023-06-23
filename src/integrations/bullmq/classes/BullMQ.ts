@@ -1,9 +1,12 @@
-import IORedis from "ioredis"
-import config from "config"
-import { IRedisIoConfig } from "../../../../config/config.interface"
-import { Jobs, Queue } from ".."
+/* ------------------------------ Dependencies ------------------------------ */
+import IORedis from 'ioredis'
+import config from 'config'
+/* ----------------------------- Custom Modules ----------------------------- */
+import { IRedisIoConfig } from '../../../../config/config.interface'
+import { Jobs, Queue } from '..'
+/* -------------------------------------------------------------------------- */
 
-const ioRedisConfig: IRedisIoConfig = config.get("database.ioRedis")
+const ioRedisConfig: IRedisIoConfig = config.get('database.ioRedis')
 const connection = new IORedis(ioRedisConfig)
 
 class BullMQ {
