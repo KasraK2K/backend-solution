@@ -9,7 +9,7 @@ import { selectQuery } from './general.query'
 class GeneralRepository {
   public healthCheck() {
     return new Promise((resolve, reject) => {
-      const condition = false
+      const condition = true
 
       if (!condition) reject(errorHandler(1000))
       else resolve({ message: selectQuery({ selectFields: ['name', 'age'] }) })
