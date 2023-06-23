@@ -8,6 +8,7 @@ application:
   bearer: "Bearer"
   bearerHeader: "authorization"
   apiKeyHeader: "api-key"
+  information: false
   request:
     allowMethods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
     ignoreCheckMethods: []

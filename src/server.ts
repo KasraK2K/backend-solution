@@ -1,3 +1,4 @@
+/* ---------------------------------- Boot ---------------------------------- */
 import './bootstrap'
 /* ------------------------------ Node Modules ------------------------------ */
 import http from 'node:http'
@@ -14,6 +15,7 @@ import router from './routes'
 import AppError from './common/helpers/error/AppError'
 import logger from './common/helpers/logger.helper'
 import colour from './common/utils/logColour.util'
+import { printInformation } from './common/helpers/information.helper'
 /* -------------------------------------------------------------------------- */
 
 const env = dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
@@ -23,17 +25,18 @@ const app = express()
 const server = http.createServer(app)
 const port = process.env.PORT || '3000'
 
-/* -------------------------------------------------------------------------- */
+/* ------------------------------- Application ------------------------------ */
+
 app.set('port', port)
 app.set('server_address', process.env.SERVER_ADDRESS)
-/* -------------------------------------------------------------------------- */
+
+/* ------------------------------- Middleware ------------------------------- */
 app.use(methodOverride())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(helmet())
 app.use('/', router)
-/* -------------------------------------------------------------------------- */
 app.use('*', (error: AppError, _, res, __) => {
   if (error instanceof AppError)
     return res.status(error.statusCode).json({
@@ -50,9 +53,10 @@ app.use('*', (error: AppError, _, res, __) => {
     }
   }
 })
-/* -------------------------------------------------------------------------- */
-server.listen(app.get('port')).on('listening', () =>
+
+server.listen(app.get('port')).on('listening', () => {
+  printInformation(app.get('port'))
   logger.info(`HTTP Server is running on ${colour.love(app.get('server_address'))}`, {
     dest: basename(__filename),
   })
-)
+})
