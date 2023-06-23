@@ -1,6 +1,9 @@
+/* ------------------------------ Dependencies ------------------------------ */
 import { JwtPayload, SignOptions, DecodeOptions } from 'jsonwebtoken'
+/* ----------------------------- Custom Modules ----------------------------- */
 import jwt, { IJwtVerify } from '../utils/jwt.util'
 import cypher from '../utils/cypher.util'
+/* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
 /*                                 How To Use                                 */

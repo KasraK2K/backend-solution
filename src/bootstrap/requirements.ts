@@ -6,6 +6,8 @@ const REQUIRED_ENVIRONMENTS: string[] = [
   'NODE_ENV',
   'PORT',
   'SERVER_ADDRESS',
+  'API_KEY',
+  'RBBITMQ_URI',
   // 'MONGO_URI',
   // 'METRIC_PORT',
   // 'SENTRY_DSN',

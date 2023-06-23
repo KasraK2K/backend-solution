@@ -8,7 +8,7 @@ application:
   bearer: "Bearer"
   bearerHeader: "authorization"
   apiKeyHeader: "api-key"
-  information: true
+  information: false
   request:
     allowMethods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
     ignoreCheckMethods: []
@@ -21,7 +21,7 @@ job:
 
 logger:
   logOnConsole: true
-  logOnFile: true
+  logOnFile: false
   logOnDatabase: true
   winston:
     dirname: "logs"

@@ -8,10 +8,14 @@
 //
 //=======================================================================================================================================================
 
-import os from 'os'
+/* ------------------------------ Node Modules ------------------------------ */
+import os from 'node:os'
+/* ------------------------------ Dependencies ------------------------------ */
 import config from 'config'
+/* ----------------------------- Custom Modules ----------------------------- */
 import { IApplicationConfig } from '../../../config/config.interface'
 import tokenHelper from './token.helper'
+/* -------------------------------------------------------------------------- */
 
 const appConfig: IApplicationConfig = config.get('application')
 
