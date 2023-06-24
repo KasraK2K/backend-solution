@@ -57,10 +57,10 @@ export const printInformation = (port: number) => {
     console.groupEnd()
 
     const payload = { id: 1 }
-    const cypherToken = tokenHelper.sign(payload)
+    const cryptoToken = tokenHelper.sign(payload)
 
-    console.log('\n- Cypher Token ----------------------------------------------------------')
-    console.info(cypherToken)
+    console.log('\n- Crypto Token ----------------------------------------------------------')
+    console.info(cryptoToken)
 
     console.log('\n- Api Key ---------------------------------------------------------------')
     console.info(process.env.API_KEY, '\n')

@@ -2,35 +2,35 @@
 import { JwtPayload, SignOptions, DecodeOptions } from 'jsonwebtoken'
 /* ----------------------------- Custom Modules ----------------------------- */
 import jwt, { IJwtVerify } from '../utils/jwt.util'
-import cypher from '../utils/cypher.util'
+import crypto from '../utils/crypto.util'
 /* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
 /*                                 How To Use                                 */
 /* -------------------------------------------------------------------------- */
-// import token from 'src/common/helpers/token.helper'
+// import tokenHelper from 'src/common/helpers/token.helper'
 
 // const payload = { foo: 'bar' }
-// const cypheredJwt = token.sign(payload)
-// const payloadOfCypheredJwt = token.decode(cypheredJwt)
-// const isValidCypheredJwt = token.verify(cypheredJwt)
+// const encryptedJwt = tokenHelper.sign(payload)
+// const decryptedPayload = tokenHelper.decode(encryptedJwt)
+// const isValidEncryptedJwt = tokenHelper.verify(encryptedJwt)
 /* -------------------------------------------------------------------------- */
 
 class Token {
   public sign(payload: Record<string, any>, options?: SignOptions | undefined): string {
-    return cypher.textToCypher(jwt.payloadToJwt(payload, options))
+    return crypto.encrypt(jwt.payloadToJwt(payload, options))
   }
 
   public decode(
-    cypherToken: string,
+    encryptedToken: string,
     options?: DecodeOptions | undefined
   ): string | JwtPayload | null {
-    return jwt.jwtToPayload(cypher.cypherToText(cypherToken), options)
+    return jwt.jwtToPayload(crypto.decrypt(encryptedToken), options)
   }
 
-  public verify(cypherToken: string): IJwtVerify {
+  public verify(encryptedText: string): IJwtVerify {
     try {
-      const jwtToken = cypher.cypherToText(cypherToken)
+      const jwtToken = crypto.decrypt(encryptedText)
       return jwt.verifyJwt(jwtToken)
     } catch {
       return { valid: false, data: {} }
