@@ -10,7 +10,7 @@
     "build": "npm run prebuild && NODE_ENV=production tsc",
     "start": "npm run kill && NODE_ENV=production node build/src/server.js",
     "lint": "eslint . --ext .ts",
-    "format": "npx pretty-quick --wite . --yes",
+    "format": "prettier --write .",
     "docs": "rimraf docs && typedoc --options typedoc.json",
     "prepare": "husky install"
   },
@@ -29,6 +29,7 @@
     "@types/ioredis": "^5.0.0",
     "@types/node": "^20.3.1",
     "@types/pg": "^8.10.2",
+    "@types/reflect-metadata": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "eslint": "^8.43.0",
@@ -62,6 +63,7 @@
     "method-override": "^3.0.0",
     "mongodb": "^5.6.0",
     "pg": "^8.11.0",
+    "prettier": "^2.8.8",
     "reflect-metadata": "^0.1.13",
     "winston": "^3.9.0",
     "winston-daily-rotate-file": "^4.7.1"
