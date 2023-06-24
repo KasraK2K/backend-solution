@@ -8,7 +8,11 @@
     "prebuild": "rimraf build",
     "dev": "npm run kill && NODE_ENV=development ts-node-dev --transpile-only --respawn --no-notify --quiet --clear src/server.ts",
     "build": "npm run prebuild && NODE_ENV=production tsc",
-    "start": "npm run kill && NODE_ENV=production node build/src/server.js"
+    "start": "npm run kill && NODE_ENV=production node build/src/server.js",
+    "lint": "eslint . --ext .ts",
+    "format": "npx pretty-quick --wite . --yes",
+    "docs": "rimraf docs && typedoc --options typedoc.json",
+    "prepare": "husky install"
   },
   "keywords": [
     "boilerplate",
@@ -39,6 +43,7 @@
     "amqplib": "^0.10.3",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
+    "builtin-request": "^1.1.1",
     "bullmq": "^4.0.0",
     "chalk": "4.1.2",
     "config": "^3.3.9",
