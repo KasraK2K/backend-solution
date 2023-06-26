@@ -20,6 +20,7 @@ export const poolConfig: PoolConfig = pgConfig
 export const pool: pg.Pool = new pg.Pool(poolConfig)
 
 export default {
+  pg,
   poolConfig,
   pool,
 }
