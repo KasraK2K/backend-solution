@@ -1,6 +1,6 @@
 {
   "entryPointStrategy": "expand",
-  "entryPoints": ["./src/**/*.ts"],
+  "entryPoints": ["src"],
   "categorizeByGroup": false,
   "categoryOrder": ["*", "Uncategorized"],
   "defaultCategory": "Uncategorized",
@@ -19,8 +19,9 @@
     "dist",
     "build"
   ],
-  "theme": "default",
-  "name": "Node Starter Kit",
+  "theme": "hierarchy",
+  "name": "Backend Solution",
   "gitRevision": "master",
-  "githubPages": true
+  "githubPages": true,
+  "plugin": ["typedoc-theme-hierarchy"]
 }

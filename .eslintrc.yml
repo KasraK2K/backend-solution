@@ -6,13 +6,13 @@ extends:
   - plugin:@typescript-eslint/recommended
   - prettier
 overrides: []
-parser: "@typescript-eslint/parser"
+parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: latest
   sourceType: module
 plugins:
-  - "@typescript-eslint"
-  - "prettier"
+  - '@typescript-eslint'
+  - 'prettier'
 rules:
   indent:
     - error
@@ -26,6 +26,6 @@ rules:
   semi:
     - error
     - never
-  prettier/prettier: "error"
-  arrow-body-style": "off"
-  prefer-arrow-callback: "off"
+  prettier/prettier: 'error'
+  arrow-body-style": 'off'
+  prefer-arrow-callback: 'off'

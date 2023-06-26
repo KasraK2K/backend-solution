@@ -4,6 +4,7 @@ build/
 .vscode/
 .fleet/
 .idea/
+docs/
 
 package-lock.json
 pnpm-lock.yaml
