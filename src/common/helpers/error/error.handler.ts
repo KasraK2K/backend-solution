@@ -2,7 +2,7 @@
 import { basename } from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import _ from 'lodash'
-/* --------------------------------- Module --------------------------------- */
+/* ----------------------------- Custom Modules ----------------------------- */
 import AppError, { IErrorOpt } from './AppError'
 import errorFilePath from './errorFilePath'
 import logger from '../logger.helper'
@@ -95,7 +95,22 @@ const statusMap = new Map<IStatusMapKey, IStatusMapObject>([
   ["ECONNREFUSED",      { status: 500, label: 'ECONNREFUSED',      message: process.env.NODE_ENV !== "production" ? "Database Connection Refused" : SERVER_ERROR }],
   ["WRONG_ERROR_CODE",  { status: 500, label: 'WRONG_ERROR_CODE',  message: "Error Code is not a valid" }],
   /* ----------------------------- Custome Errors ----------------------------- */
-  [1000, { status: 500, label: 'CUSTOM_ERROR',  message: 'This is an custom error with default message' }],
+  [1000, { status: 500, label: 'CODE_NOT_VALID',                message: "Error Code is not a valid", }],
+  [1001, { status: 500, label: 'STATUS_NOT_VALID',              message: "Status Code is not a valid", }],
+  [1002, { status: 400, label: 'CUSTOM_ERROR',                  message: "Custome Error happening", }],
+  [1003, { status: 429, label: 'TOO_MANY_REQUEST',              message: "Too Many Requests", }],
+  [1004, { status: 400, label: 'FAILD_EXTEND_MULTIPART_HEADER', message: "Error on extending multipart header", }],
+  [1005, { status: 400, label: 'UPLOAD_ERROR',                  message: "Error on uploading file", }],
+  [1006, { status: 400, label: 'WRONG_MIMETYPE',                message: "MimeType is not valid", }],
+  [1007, { status: 400, label: 'UPLOAD_TYPE_NOT_VALID',         message: "Upload Type not found", }],
+  [1008, { status: 400, label: 'UPLOAD_ID_NOT_FOUND',           message: "Upload ID not found", }],
+  [1009, { status: 400, label: 'LIMIT_UPLOAD_FILE_COUNT',       message: "Uploaded more than max files", }],
+  [1010, { status: 401, label: 'TOKEN_INVALID',                 message: "Token invalid", }],
+  [1011, { status: 400, label: 'TOKEN_MISSING',                 message: "Token missing", }],
+  [1012, { status: 400, label: 'API_KEY_MISSING',               message: "Api Key missing", }],
+  [1013, { status: 401, label: 'API_KEY_INVALID',               message: "Api Key invalid", }],
+  [1014, { status: 405, label: 'METHOD_NOT_ALLOWED',            message: "Method not allowed", }],
+
 ])
 
 const getErrorObject = (error_code: number | string) => {
