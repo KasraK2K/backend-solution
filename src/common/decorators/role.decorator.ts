@@ -7,6 +7,7 @@ import errorHandler from '../helpers/error/error.handler'
 /* -------------------------------------------------------------------------- */
 
 const bearerKey: string = config.get('application.bearer')
+const bearerHeader: string = config.get('application.bearerHeader')
 
 const Role = (roles: string[]) => {
   return (_target: Object, _prototypeKey: string, descriptor: PropertyDescriptor) => {
@@ -21,7 +22,7 @@ const Role = (roles: string[]) => {
       let token: string | string[] = headers.filter((header) => header.startsWith(bearerKey))
 
       // Cheack Authorization Heaer
-      if (!token || !token.length) {
+      if (!token || !token.length || !headers.includes(bearerHeader)) {
         const error = errorHandler(401)
         return res.status(error.status).json({ ...additational, error })
       }
