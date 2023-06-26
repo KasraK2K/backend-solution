@@ -1,16 +1,16 @@
 mode: development
 
 general:
-  frontendDomain: "https://localhost:6100/#"
+  frontendDomain: 'https://localhost:6100/#'
 
 application:
-  host: "http://localhost"
-  bearer: "Bearer"
-  bearerHeader: "authorization"
-  apiKeyHeader: "api-key"
+  host: 'http://localhost'
+  bearer: 'Bearer'
+  bearerHeader: 'authorization'
+  apiKeyHeader: 'api-key'
   information: false
   request:
-    allowMethods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     ignoreCheckMethods: []
     ignoreApiKey: []
     ignoreToken: []
@@ -24,32 +24,32 @@ logger:
   logOnFile: false
   logOnDatabase: false
   winston:
-    dirname: "logs"
-    datePattern: "YYYY-MM-DD"
-    extension: ".log"
+    dirname: 'logs'
+    datePattern: 'YYYY-MM-DD'
+    extension: '.log'
     zippedArchive: true
-    maxSize: "20m"
-    maxFiles: "14d"
+    maxSize: '20m'
+    maxFiles: '14d'
 
 database:
   mongodb:
-    name: "backend_solution"
-    default_collection: "default"
-    uri: "mongodb://0.0.0.0:27017"
+    name: 'backend_solution'
+    default_collection: 'default'
+    uri: 'mongodb://0.0.0.0:27017'
   postgres:
-    user: "postgres"
-    host: "0.0.0.0"
-    database: "backend_solution"
-    password: "postgres"
+    user: 'postgres'
+    host: '0.0.0.0'
+    database: 'backend_solution'
+    password: 'postgres'
     port: 5432
     idleTimeoutMillis: 10000
     connectionTimeoutMillis: 10000
     ssl:
       rejectUnauthorized: false
   redis:
-    uri: "redis://localhost:6379"
+    uri: 'redis://localhost:6379'
   ioRedis:
-    host: "localhost"
+    host: 'localhost'
     port: 6379
     showFriendlyErrorStack: true
     enableReadyCheck: true
@@ -57,8 +57,8 @@ database:
 
 cors:
   optionsSuccessStatus: 200
-  origin: "*"
-  methods: ["POST"]
+  origin: '*'
+  methods: ['POST']
 
 helmet:
   contentSecurityPolicy:
@@ -87,11 +87,11 @@ rate_limiter:
 
 upload:
   # use “tmp" to use os tmp directory
-  tempDir: "public/tmp"
+  tempDir: 'public/tmp'
   # The directory for placing file uploads in. You can move them later by using fs.rename()
-  uploadDir: "public"
+  uploadDir: 'public'
   validUploadFolders: []
-  responsePath: "http://localhost"
+  responsePath: 'http://localhost'
   # to include the extensions of the original files or not
   keepExtensions: true
   # when you call the .parse method, the files argument (of the callback) will contain arrays of files for inputs which submit multiple files using the HTML5 multiple attribute. Also, the fields argument will contain arrays of values for fields that have names ending with '[]'
