@@ -6,10 +6,10 @@ Mailgun integration example:
 async function createMessage() {
   new Promise(async (resolve, reject) => {
     const data = {
-      to: ["kasra_k2k@yahoo.com"],
-      subject: "html",
-      text: "html Testing some Mailgun awesomness!",
-      html: "<h1>HTML Content</h1>",
+      to: ['kasra_k2k@yahoo.com'],
+      subject: 'html',
+      text: 'html Testing some Mailgun awesomness!',
+      html: '<h1>HTML Content</h1>',
     }
 
     mailGunJS.message

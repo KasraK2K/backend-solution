@@ -12,8 +12,7 @@ class Ack {
     this.superThis.amqp.connect(this.superThis.uri, (error0, connection) => {
       if (error0) throw error0
 
-                
-                connection.createChannel((error1, channel) => {
+      connection.createChannel((error1, channel) => {
         if (error1) throw error1
 
         /**
