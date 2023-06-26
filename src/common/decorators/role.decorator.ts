@@ -1,8 +1,9 @@
 /* ------------------------------ Dependencies ------------------------------ */
 import { Request } from 'express'
 import config from 'config'
+import _ from 'lodash'
 /* ------------------------------ Node Modules ------------------------------ */
-import { addMetaDataLogic } from '../helpers/addMetaData.helper'
+import { getMetadatas } from '../helpers/addMetaData.helper'
 import errorHandler from '../helpers/error/error.handler'
 /* -------------------------------------------------------------------------- */
 
@@ -17,14 +18,14 @@ const Role = (roles: string[]) => {
       const res = args[0].res
       const originalUrl = args[0].originalUrl
       const headers: string[] = Array.from(args[0].rawHeaders)
-      const additational = addMetaDataLogic({ originalUrl } as Request)
+      const additational = getMetadatas({ originalUrl } as Request)
 
       let token: string | string[] = headers.filter((header) => header.startsWith(bearerKey))
 
       // Cheack Authorization Heaer
       if (!token || !token.length || !headers.includes(bearerHeader)) {
         const error = errorHandler(401)
-        return res.status(error.status).json({ ...additational, error })
+        return res.status(error.status).json({ success: false, ...additational, error })
       }
       // Check Token & Role
       else {
@@ -33,7 +34,7 @@ const Role = (roles: string[]) => {
         // Check role is valid
         if (!roles.includes(tokenRole)) {
           const error = errorHandler(403)
-          return res.status(error.status).json({ ...additational, error })
+          return res.status(error.status).json({ success: false, ...additational, error })
         }
       }
 

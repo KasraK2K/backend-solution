@@ -23,6 +23,7 @@ import requestMiddleware from './middlewares/request.middleware'
 import authMiddleware from './middlewares/auth.middleware'
 import { printInformation } from './common/helpers/information.helper'
 import { ICorsConfig } from './../config/config.interface'
+import { getMetadatas } from './common/helpers/addMetaData.helper'
 /* -------------------------------------------------------------------------- */
 
 const corsConfig: ICorsConfig = config.get('cors')
@@ -63,20 +64,13 @@ app.use(requestMiddleware.isMethodAllowed)
 // app.use(authMiddleware.auth)
 
 app.use('/', router)
-app.use('*', (error: AppError, _, res, __) => {
-  if (error instanceof AppError)
-    return res.status(error.status).json({
-      success: false,
-      error,
-      data: null,
-    })
-  else {
+app.use('*', (error: AppError, req, res, __) => {
+  const additational = getMetadatas(req)
+  if (error instanceof AppError) {
+    return res.status(error.status).json({ success: false, ...additational, error })
+  } else {
     logger.error(colour.red('Unknown type error:'), { dest: basename(__filename), error })
-    return res.status().json({
-      success: false,
-      error,
-      data: null,
-    })
+    return res.status().json({ success: false, ...additational, error })
   }
 })
 

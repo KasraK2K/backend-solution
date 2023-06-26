@@ -5,7 +5,7 @@ import { Request, Response } from 'express'
 import config from 'config'
 /* ----------------------------- Custom Modules ----------------------------- */
 import logger from '../common/helpers/logger.helper'
-import { addMetaData, addMetaDataLogic } from '../common/helpers/addMetaData.helper'
+import { addMetaData, getMetadatas } from '../common/helpers/addMetaData.helper'
 import colour from '../common/utils/logColour.util'
 import AppError from '../common/helpers/error/AppError'
 import { IApplicationConfig } from '../../config/config.interface'
@@ -27,11 +27,11 @@ class Controller {
 
     return await callback(args)
       .then((result) => {
-        const responseData = addMetaDataLogic(req, result)
+        const additational = getMetadatas(req, result)
 
         logger.debug(
           `${colour.yellow('response')}: \n${JSON.stringify(
-            { ...responseData, result: 'result is omited' },
+            { success: true, ...additational, result: 'result is omited' },
             undefined,
             4
           )}`,
@@ -42,18 +42,11 @@ class Controller {
 
         return addMetaData(req, res, result)
       })
-      .catch((error: AppError) =>
-        res.status(error.status).json({
-          success: false,
-          api_version: applicationConfig.api_version,
-          front_version: applicationConfig.front_version,
-          portal_version: applicationConfig.portal_version,
-          endpoint: req.originalUrl,
-          env: String(process.env.NODE_ENV),
-          mode,
-          error,
-        })
-      )
+      .catch((error: AppError) => {
+        const additational = getMetadatas(req)
+
+        return res.status(error.status).json({ success: false, ...additational, error })
+      })
   }
 }
 

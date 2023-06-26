@@ -10,7 +10,6 @@ const applicationConfig: IApplicationConfig = config.get('application')
 const mode: string = config.get('mode')
 
 export interface IResponseData {
-  success: boolean
   api_version: string
   front_version: string
   portal_version: string
@@ -21,10 +20,9 @@ export interface IResponseData {
   data?: any
 }
 
-export const addMetaDataLogic = (req: Request, data?: any) => {
+export const getMetadatas = (req: Request, data?: any) => {
   const isDataArray = Array.isArray(data)
   const responseData: IResponseData = {
-    success: true,
     api_version: applicationConfig.api_version,
     front_version: applicationConfig.front_version,
     portal_version: applicationConfig.portal_version,
@@ -38,6 +36,6 @@ export const addMetaDataLogic = (req: Request, data?: any) => {
 }
 
 export const addMetaData = (req: Request, res: Response, data: any, status = 200) => {
-  const responseData = addMetaDataLogic(req, data)
-  return res.status(status).json(responseData)
+  const responseData = getMetadatas(req, data)
+  return res.status(status).json({ success: true, ...responseData })
 }
