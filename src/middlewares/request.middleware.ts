@@ -5,17 +5,18 @@ import _ from 'lodash'
 /* ----------------------------- Custom Modules ----------------------------- */
 import Middleware from '../base/Middleware'
 import { IApplicationConfig } from '../../config/config.interface'
-import errorHandler from 'src/common/helpers/error/error.handler'
+import errorHandler from '../common/helpers/error/error.handler'
 /* -------------------------------------------------------------------------- */
 
 const applicationConfig: IApplicationConfig = config.get('application')
 const mode: string = config.get('mode')
 
 class RequestMiddleware extends Middleware {
-  processIdAdder(_req: Request, res: Response, next: NextFunction) {
+  processIdAdder(req: Request, res: Response, next: NextFunction) {
     const process_id = (+new Date() + Math.floor(Math.random() * (999 - 100) + 100)).toString(16)
-    _.assign(global, { process_id })
-    _.assign(res.locals, { params: { process_id } })
+    // _.assign(global, { process_id })
+    // _.assign(res.locals, { params: { process_id } })
+    req.process_id = process_id
     next()
   }
 

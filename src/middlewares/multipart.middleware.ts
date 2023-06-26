@@ -10,7 +10,7 @@ import { Request, Response, NextFunction } from 'express'
 /* ----------------------------- Custom Modules ----------------------------- */
 import Middleware from '../base/Middleware'
 import logger from '../common/helpers/logger.helper'
-import errorHandler from 'src/common/helpers/error/error.handler'
+import errorHandler from '../common/helpers/error/error.handler'
 import { IUploadConfig } from '../../config/config.interface'
 import { addMetaData } from '../common/helpers/addMetaData.helper'
 /* -------------------------------------------------------------------------- */
@@ -94,7 +94,7 @@ class MultipartMiddleware extends Middleware {
               const file = files[fileKey] as formidable.File
               fs.unlinkSync(file.filepath)
             })
-            logger.error(errorHandler(1005).message, { dest: 'MultipartMiddleware.ts' })
+            logger.error(errorHandler(1005).message, { dest: basename(__filename) })
             return addMetaData(req, res, {
               errCode: 1005,
               statusCode: 400,

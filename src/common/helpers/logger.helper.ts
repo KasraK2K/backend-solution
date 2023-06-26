@@ -1,6 +1,6 @@
 /* ------------------------------ Node Modules ------------------------------ */
 import fs from 'node:fs'
-import path from 'node:path'
+import { basename, resolve } from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import { createLogger, transports, format } from 'winston'
 import DailyRotateFile from 'winston-daily-rotate-file'
@@ -14,7 +14,7 @@ import { ModuleName } from '../enums/general.enum'
 /* -------------------------------- Constants ------------------------------- */
 const loggerConfig: ILoggerConfig = config.get('logger')
 
-const directory = path.resolve(loggerConfig.winston.dirname)
+const directory = resolve(loggerConfig.winston.dirname)
 if (!fs.existsSync(directory)) fs.mkdirSync(directory)
 
 const logLevel = process.env.NODE_ENV === 'production' ? 'warn' : 'debug'
@@ -38,7 +38,7 @@ if (loggerConfig.logOnFile) {
   // errorTransport.on("new", (newFilename) => console.log(`${newFilename} Created`))
   // errorTransport.on("archive", (zipFilename) => console.log(`${zipFilename} Archived`))
   errorTransport.on('rotate', (oldFilename) =>
-    deleteFile(oldFilename, { dest: 'logger.helper.ts' })
+    deleteFile(oldFilename, { dest: basename(__filename) })
   )
   // errorTransport.on("logRemoved", (removedFilename) => console.log(`${removedFilename} Removed`))
 }
@@ -56,7 +56,7 @@ if (loggerConfig.logOnFile) {
   // combinedTransport.on("new", (newFilename) => console.log(`${newFilename} Created`))
   // combinedTransport.on("archive", (zipFilename) => console.log(`${zipFilename} Archived`))
   combinedTransport.on('rotate', (oldFilename) =>
-    deleteFile(oldFilename, { dest: 'logger.helper.ts' })
+    deleteFile(oldFilename, { dest: basename(__filename) })
   )
   // combinedTransport.on("logRemoved", (removedFilename) => console.log(`${removedFilename} Removed`))
 }

@@ -5,7 +5,7 @@ import config from 'config'
 /* ----------------------------- Custom Modules ----------------------------- */
 import { IApplicationConfig, IRateLimiter } from '../../config/config.interface'
 import Middleware from '../base/Middleware'
-import errorHandler from 'src/common/helpers/error/error.handler'
+import errorHandler from '../common/helpers/error/error.handler'
 /* -------------------------------------------------------------------------- */
 
 const reateLimiterConfig: IRateLimiter = config.get('rate_limiter')

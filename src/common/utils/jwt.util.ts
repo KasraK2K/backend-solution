@@ -1,3 +1,5 @@
+/* ------------------------------ Node Modules ------------------------------ */
+import { basename } from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import { sign, decode, verify, JwtPayload, SignOptions, DecodeOptions } from 'jsonwebtoken'
 import _ from 'lodash'
@@ -40,7 +42,7 @@ class Jwt {
     verify(token, String(process.env.JWT_SECRET), (err, decoded) => {
       if (err) {
         returnValue.valid = false
-        logger.warn(err.message, { service: ModuleName.DEFAULT, dest: 'jwt.util.ts' })
+        logger.warn(err.message, { service: ModuleName.DEFAULT, dest: basename(__filename) })
       } else {
         returnValue.valid = true
         returnValue.data = {}
