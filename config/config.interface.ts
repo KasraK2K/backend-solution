@@ -19,6 +19,7 @@ export interface IApplicationConfig {
   api_version: string
   front_version: string
   portal_version: string
+  router_version: string
   information: boolean
   monitoring: IMonitoringConfig
   request: IRecuestConfig
