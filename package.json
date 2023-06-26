@@ -48,6 +48,7 @@
     "builtin-request": "^1.1.1",
     "bullmq": "^4.0.0",
     "chalk": "4.1.2",
+    "compression": "^1.7.4",
     "config": "^3.3.9",
     "cors": "^2.8.5",
     "cron": "^2.3.1",
@@ -72,6 +73,7 @@
     "prettier": "^2.8.8",
     "redis": "^4.6.7",
     "reflect-metadata": "^0.1.13",
+    "sqlstring": "^2.3.3",
     "winston": "^3.9.0",
     "winston-daily-rotate-file": "^4.7.1"
   }

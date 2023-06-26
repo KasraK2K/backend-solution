@@ -21,7 +21,8 @@
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "importsNotUsedAsValues": "remove"
+    "importsNotUsedAsValues": "remove",
+    "strictPropertyInitialization": false
   },
   "include": ["src"],
   "exclude": ["node_modules"]

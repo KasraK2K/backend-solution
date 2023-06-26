@@ -9,8 +9,9 @@ import generalService from './general.service'
 @BindInstance
 class GeneralController extends Controller {
   @Cache(5)
-  @Role(['admin'])
+  @Role(['admin', 'user'])
   async healthCheck(req: Request, res: Response) {
+    console.log('controller', req.process_id)
     await super.handle(generalService.healthCheck, undefined, req, res)
   }
 }

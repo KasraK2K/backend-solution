@@ -2,7 +2,7 @@
 import './bootstrap'
 /* ------------------------------ Node Modules ------------------------------ */
 import http from 'node:http'
-import { basename } from 'node:path'
+import { basename, resolve } from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import express from 'express'
 import methodOverride from 'method-override'
@@ -10,13 +10,22 @@ import cors from 'cors'
 import helmet from 'helmet'
 import dotenv from 'dotenv'
 import dotenvExpand from 'dotenv-expand'
+import compression from 'compression'
+import config from 'config'
 /* ----------------------------- Custom Modules ----------------------------- */
 import router from './routes'
 import AppError from './common/helpers/error/AppError'
 import logger from './common/helpers/logger.helper'
 import colour from './common/utils/logColour.util'
+import rateLimiterMiddleware from './middlewares/rateLimiter.middleware'
+import multipartMiddleware from './middlewares/multipart.middleware'
+import requestMiddleware from './middlewares/request.middleware'
+import authMiddleware from './middlewares/auth.middleware'
 import { printInformation } from './common/helpers/information.helper'
+import { ICorsConfig } from './../config/config.interface'
 /* -------------------------------------------------------------------------- */
+
+const corsConfig: ICorsConfig = config.get('cors')
 
 const env = dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 dotenvExpand.expand(env)
@@ -33,9 +42,26 @@ app.set('server_address', process.env.SERVER_ADDRESS)
 /* ------------------------------- Middleware ------------------------------- */
 app.use(methodOverride())
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(express.urlencoded({ extended: false }))
 app.use(helmet())
+app.use(compression())
+app.use(
+  cors({
+    optionsSuccessStatus: corsConfig.optionsSuccessStatus,
+    methods: corsConfig.methods,
+    origin: corsConfig.origin,
+  })
+)
+
+app.disable('x-powered-by')
+app.use(express.static(resolve(process.cwd(), 'public')))
+
+app.use(rateLimiterMiddleware.check())
+app.use(multipartMiddleware.handle)
+app.use(requestMiddleware.processIdAdder)
+app.use(requestMiddleware.isMethodAllowed)
+// app.use(authMiddleware.auth)
+
 app.use('/', router)
 app.use('*', (error: AppError, _, res, __) => {
   if (error instanceof AppError)
