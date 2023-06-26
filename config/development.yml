@@ -6,7 +6,7 @@ general:
 application:
   host: 'http://localhost'
   bearer: 'Bearer'
-  bearerHeader: 'authorization'
+  bearerHeader: 'Authorization'
   apiKeyHeader: 'api-key'
   information: false
   request:

@@ -1,3 +1,5 @@
+/* ------------------------------ Node Modules ------------------------------ */
+import { basename } from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import _ from 'lodash'
 // import SqlString from "sqlstring"
@@ -269,7 +271,7 @@ class PgBuilderRepository {
         logger.warn(
           `${this.name}: where argument is not a string or string[] and we are not handling it`,
           {
-            dest: 'PgBuilderRepository.ts',
+            dest: basename(__filename),
           }
         )
         break
@@ -304,7 +306,7 @@ class PgBuilderRepository {
           logger.error(
             `${this.name}: orderArgs and sort arguments are not the same type and length (in array mode)`,
             {
-              dest: 'PgBuilderRepository.ts',
+              dest: basename(__filename),
             }
           )
         }
@@ -315,7 +317,7 @@ class PgBuilderRepository {
         logger.warn(
           `${this.name}: orderBy argument is not a string or string[] and we are not handling it`,
           {
-            dest: 'PgBuilderRepository.ts',
+            dest: basename(__filename),
           }
         )
         break
@@ -341,7 +343,7 @@ class PgBuilderRepository {
         logger.warn(
           `${this.name}: groupBy argument is not a string or string[] and we are not handling it`,
           {
-            dest: 'PgBuilderRepository.ts',
+            dest: basename(__filename),
           }
         )
         break

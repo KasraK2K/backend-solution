@@ -4,11 +4,16 @@
 /*                  This Consumer message should have a `id`                  */
 /* -------------------------------------------------------------------------- */
 
+/* ------------------------------ Node Modules ------------------------------ */
+import { basename } from 'node:path'
+/* ------------------------------ Dependencies ------------------------------ */
 import amqp from 'amqplib/callback_api'
 import config from 'config'
 import path from 'path'
+/* ----------------------------- Custom Modules ----------------------------- */
 import { IJobsConfig } from '../../../config/config.interface'
 import logger from '../../common/helpers/logger.helper'
+/* -------------------------------------------------------------------------- */
 
 const jobConfig: IJobsConfig = config.get('job')
 
@@ -35,7 +40,7 @@ if (uri && uri.length && jobConfig.activeConsumers.includes(filename))
        */
       channel.prefetch(1)
 
-      logger.info(`Waiting for messages in ${queue_name}`, { dest: 'sample-consumer' })
+      logger.info(`Waiting for messages in ${queue_name}`, { dest: basename(__filename) })
 
       channel.consume(
         queue_name,
@@ -45,7 +50,7 @@ if (uri && uri.length && jobConfig.activeConsumers.includes(filename))
 
             // NOTE: You can do something here...
 
-            logger.log(`Message id: ${content.id} Done`, { dest: 'sample-consumer' })
+            logger.log(`Message id: ${content.id} Done`, { dest: basename(__filename) })
             channel.ack(message)
           }
         },

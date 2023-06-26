@@ -1,3 +1,5 @@
+/* ------------------------------ Node Modules ------------------------------ */
+import { basename } from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import _ from 'lodash'
 /* ----------------------------- Custom Modules ----------------------------- */
@@ -16,7 +18,7 @@ class PgRepository extends PgBuilderRepository {
       await this.executeQuery({ query, omits })
         .then((result) => resolve(result))
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
@@ -34,7 +36,7 @@ class PgRepository extends PgBuilderRepository {
       await this.executeQuery({ query, parameters, omits })
         .then((result) => resolve(result))
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
@@ -68,7 +70,7 @@ class PgRepository extends PgBuilderRepository {
       await this.executeQuery({ query, parameters, omits })
         .then((result) => resolve(result))
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
@@ -100,7 +102,7 @@ class PgRepository extends PgBuilderRepository {
       await this.executeQuery({ query, parameters })
         .then((result) => resolve(result))
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
@@ -140,7 +142,7 @@ class PgRepository extends PgBuilderRepository {
       await this.executeQuery({ query, parameters, omits })
         .then((result) => resolve(result))
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
@@ -169,7 +171,7 @@ class PgRepository extends PgBuilderRepository {
       await this.executeQuery({ query, parameters, omits })
         .then((result) => resolve(result))
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
@@ -198,7 +200,7 @@ class PgRepository extends PgBuilderRepository {
       await this.executeQuery({ query, parameters, omits })
         .then((result) => resolve(result))
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
@@ -259,7 +261,7 @@ class PgRepository extends PgBuilderRepository {
           }
         })
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
@@ -323,7 +325,7 @@ class PgRepository extends PgBuilderRepository {
       await this.executeQuery({ query })
         .then((result) => resolve(Number(result.rows[0].count)))
         .catch((err) => {
-          logger.error(err, { dest: 'PgRepository.ts' })
+          logger.error(err, { dest: basename(__filename) })
           return reject(err)
         })
     })
