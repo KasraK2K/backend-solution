@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs"
+import bcrypt from 'bcryptjs'
 
 class Bcrypt {
   public saltGen(saltNum?: number): string {
@@ -9,11 +9,11 @@ class Bcrypt {
     let generatedSalt: string
 
     switch (typeof salt) {
-      case "string":
+      case 'string':
         generatedSalt = salt
         break
 
-      case "number":
+      case 'number':
         generatedSalt = this.saltGen(salt)
         break
 

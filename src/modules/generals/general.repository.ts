@@ -1,5 +1,3 @@
-/* ------------------------------ Dependencies ------------------------------ */
-import fs from 'node:fs'
 /* ----------------------------- Custom Modules ----------------------------- */
 import errorHandler from '../../common/helpers/error/error.handler'
 import { selectQuery } from './general.query'
@@ -9,10 +7,12 @@ import { selectQuery } from './general.query'
 class GeneralRepository {
   public healthCheck() {
     return new Promise((resolve, reject) => {
-      const condition = true
+      setTimeout(() => {
+        const condition = true
 
-      if (!condition) reject(errorHandler(1000))
-      else resolve({ message: selectQuery({ selectFields: ['name', 'age'] }) })
+        if (!condition) reject(errorHandler(1000))
+        else resolve({ message: selectQuery({ selectFields: ['name', 'age'] }) })
+      }, 0)
     })
   }
 }

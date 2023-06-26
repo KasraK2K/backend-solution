@@ -11,6 +11,7 @@ const bearerKey: string = config.get('application.bearer')
 const Role = (roles: string[]) => {
   return (_target: Object, _prototypeKey: string, descriptor: PropertyDescriptor) => {
     const originalValue = descriptor.value
+
     descriptor.value = function (...args: any[]) {
       const res = args[0].res
       const originalUrl = args[0].originalUrl

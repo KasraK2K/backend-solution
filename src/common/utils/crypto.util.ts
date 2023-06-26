@@ -3,23 +3,23 @@ import CryptoJS from 'crypto-js'
 /* -------------------------------------------------------------------------- */
 /*                                 How To Use                                 */
 /* -------------------------------------------------------------------------- */
-// import cryptoJS from 'src/common/utils/cypher.util'
+// import cryptoJS from 'src/common/utils/crypto.util'
 
 // const text = 'Sample Text'
-// const cypheredText = cryptoJS.textToCypher(text)
-// const cypherToText = cryptoJS.cypherToText(cypheredText)
+// const encryptedText = cryptoJS.encrypt(text)
+// const decryptedText = cryptoJS.decrypt(cypheredText)
 /* -------------------------------------------------------------------------- */
 
-class Cypher {
-  public textToCypher(text: string): string {
+class Crypto {
+  public encrypt(text: string): string {
     return CryptoJS.AES.encrypt(text, String(process.env.ENCRYPTION_SECRET)).toString()
   }
 
-  public cypherToText(cypher: string) {
-    return CryptoJS.AES.decrypt(cypher, String(process.env.ENCRYPTION_SECRET)).toString(
+  public decrypt(encryptedText: string) {
+    return CryptoJS.AES.decrypt(encryptedText, String(process.env.ENCRYPTION_SECRET)).toString(
       CryptoJS.enc.Utf8
     )
   }
 }
 
-export default new Cypher()
+export default new Crypto()

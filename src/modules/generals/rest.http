@@ -3,7 +3,7 @@
 @today={{$localDatetime 'YYYY-MM-DD'}}
 
 # @name login
-GET {{host}}
+GET {{module}}/health-check
 Content-Type: application/json
 
 ###
