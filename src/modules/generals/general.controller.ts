@@ -11,7 +11,21 @@ class GeneralController extends Controller {
   @Cache(5)
   @Role(['admin', 'user'])
   async healthCheck(req: Request, res: Response) {
-    console.log(__filename, req.process_id)
+    /**
+     * Swagger Document
+     * 
+     * #swagger.tags = ['General']
+     * #swagger.summary = 'Some summary...'
+     * #swagger.description = 'Some description...'
+     * #swagger.operationId = 'Your_operationId_here'
+     * #swagger.parameters['id'] = {in: 'body', description: 'id description', required: true, type: 'number'}
+     * #swagger.responses[200] = {
+        description: 'Backend is fully health.',
+        schema: {message: "SELECT * FROM 'users'"}
+      }
+    */
+
+    // console.log(__filename, req.process_id)
     await super.handle(generalService.healthCheck, undefined, req, res)
   }
 }

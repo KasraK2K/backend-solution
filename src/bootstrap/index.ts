@@ -19,6 +19,7 @@ import postgresPool from './postgresql'
 import { createRedisClient } from './redis'
 import './cron-jobs/index'
 import './rabbitmq-consumers'
+import './swagger'
 
 // starterConfig.boot.forEach(async (moduleName) => {
 //   await import(`./${moduleName}`).catch((err) => console.log(err.message))
