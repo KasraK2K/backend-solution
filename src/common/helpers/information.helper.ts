@@ -15,11 +15,12 @@ import config from 'config'
 /* ----------------------------- Custom Modules ----------------------------- */
 import { IApplicationConfig } from '../../../config/config.interface'
 import tokenHelper from './token.helper'
+import colour from '../../common/utils/logColour.util'
 /* -------------------------------------------------------------------------- */
 
 const appConfig: IApplicationConfig = config.get('application')
 
-export const printInformation = (port: number) => {
+export const printInformation = (port: string) => {
   if (appConfig.information) {
     console.group('Server Information:')
     console.table([
@@ -65,4 +66,10 @@ export const printInformation = (port: number) => {
     console.log('\n- Api Key ---------------------------------------------------------------')
     console.info(process.env.API_KEY, '\n')
   }
+
+  console.log(
+    `${colour.love('HTTP Server')} running on:\t\t ${colour.blue.underline(
+      process.env.SERVER_ADDRESS
+    )}`
+  )
 }
