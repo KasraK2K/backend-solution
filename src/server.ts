@@ -17,7 +17,6 @@ import router from './routes'
 import AppError from './common/helpers/error/AppError'
 import logger from './common/helpers/logger.helper'
 import colour from './common/utils/logColour.util'
-import UserSeeder from './common/seeder/user.seed'
 import rateLimiterMiddleware from './middlewares/rateLimiter.middleware'
 import multipartMiddleware from './middlewares/multipart.middleware'
 import requestMiddleware from './middlewares/request.middleware'
@@ -78,5 +77,4 @@ app.use('*', (error: AppError, req, res, __) => {
 server.listen(app.get('port')).on('listening', async () => {
   printInformation(app.get('port'))
   console.log(`HTTP Server is running on ${colour.love.underline(app.get('server_address'))}`)
-  // await new UserSeeder().handle()
 })
