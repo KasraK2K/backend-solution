@@ -59,9 +59,7 @@ app.use(
 )
 
 app.use(responseTime(responseMiddleware.calculateTime))
-
 app.use(express.static(resolve(process.cwd(), 'public')))
-
 app.use(rateLimiterMiddleware.check())
 app.use(multipartMiddleware.handle)
 app.use(requestMiddleware.processIdAdder)
