@@ -25,6 +25,8 @@ import authMiddleware from './middlewares/auth.middleware'
 import { printInformation } from './common/helpers/information.helper'
 import { ICorsConfig } from './../config/config.interface'
 import { getMetadatas } from './common/helpers/addMetaData.helper'
+import responseTime from 'response-time'
+import restResponseTimeHistogram from './integrations/prometheus/metrics'
 /* -------------------------------------------------------------------------- */
 
 const corsConfig: ICorsConfig = config.get('cors')
@@ -33,6 +35,8 @@ const env = dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 dotenvExpand.expand(env)
 
 const app = express()
+app.disable('x-powered-by')
+
 const server = http.createServer(app)
 const port = process.env.PORT || '3000'
 
@@ -56,7 +60,23 @@ app.use(
   })
 )
 
-app.disable('x-powered-by')
+app.use(
+  responseTime((req, res, time) => {
+    if (req.route.path) {
+      restResponseTimeHistogram.observe(
+        {
+          business_name: process.env.BUSINESS_NAME,
+          app_name: process.env.APP_NAME,
+          method: req.method,
+          route: req.route.path,
+          status_code: res.statusCode,
+        },
+        time * 1000
+      )
+    }
+  })
+)
+
 app.use(express.static(resolve(process.cwd(), 'public')))
 
 app.use(rateLimiterMiddleware.check())

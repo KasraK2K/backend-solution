@@ -8,4 +8,4 @@ const restResponseTimeHistogram = new client.Histogram({
   labelNames: ['business_name', 'app_name', 'method', 'route', 'status_code'],
 })
 
-export default { restResponseTimeHistogram }
+export default restResponseTimeHistogram
