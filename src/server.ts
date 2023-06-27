@@ -39,6 +39,7 @@ const port = process.env.PORT || '3000'
 
 app.set('port', port)
 app.set('server_address', process.env.SERVER_ADDRESS)
+app.set('trust proxy', true)
 
 /* ------------------------------- Middleware ------------------------------- */
 app.use(methodOverride())

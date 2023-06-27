@@ -11,7 +11,7 @@ class GeneralController extends Controller {
   @Cache(5)
   @Role(['admin', 'user'])
   async healthCheck(req: Request, res: Response) {
-    console.log('controller', req.process_id)
+    console.log(__filename, req.process_id)
     await super.handle(generalService.healthCheck, undefined, req, res)
   }
 }

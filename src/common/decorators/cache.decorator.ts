@@ -1,8 +1,10 @@
 /* ------------------------------ Dependencies ------------------------------ */
-import { Response } from 'express'
-/* ------------------------------ Node Modules ------------------------------ */
-import { cache } from '../../common/helpers/cache.helper'
+import { Request, Response } from 'express'
+import NodeCache from 'node-cache'
+// import _ from 'lodash'
 /* -------------------------------------------------------------------------- */
+
+const cache = new NodeCache()
 
 const Cache = (duration: number) => {
   return (_target: Object, _prototypeKey: string, descriptor: PropertyDescriptor) => {
@@ -10,12 +12,20 @@ const Cache = (duration: number) => {
 
     descriptor.value = function (...args: any[]) {
       const res: Response = args[0].res
+      const req: Request = args[1].req
 
-      if (args[0].method !== 'GET') return originalValue.apply(this, args)
+      if (req.method !== 'GET') return originalValue.apply(this, args)
 
-      const key = args[0].originalUrl
+      const key = req.originalUrl
+
+      // TODO : In other kind of request we can change our key to handle changing body
+      // const ip = req.socket.remoteAddress
+      // const url = req.originalUrl
+      // const body = req.body
+      // const key =
+      //   body && Object.keys(body).length ? `${url}--${JSON.stringify(_.entries(body).sort())}` : url
+
       const cacheResponse: string = cache.get(key) as string
-
       if (cacheResponse) {
         return res.set('Cache-Control', `public, max-age=${duration}`).send(cacheResponse)
       } else {

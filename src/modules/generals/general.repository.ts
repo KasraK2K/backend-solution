@@ -12,7 +12,7 @@ class GeneralRepository {
 
         if (!condition) reject(errorHandler(1000))
         else resolve({ message: selectQuery({ selectFields: ['name', 'age'] }) })
-      }, 0)
+      }, 2000)
     })
   }
 }
