@@ -73,6 +73,7 @@
     "node-cache": "^5.1.2",
     "pg": "^8.11.0",
     "prettier": "^2.8.8",
+    "prom-client": "^14.2.0",
     "redis": "^4.6.7",
     "reflect-metadata": "^0.1.13",
     "sqlstring": "^2.3.3",
