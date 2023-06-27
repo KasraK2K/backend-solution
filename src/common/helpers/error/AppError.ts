@@ -1,8 +1,8 @@
 export interface IErrorOpt {
   status: number
-  label: string
-  code: number | string
-  message: string
+  label?: string
+  code?: number | string
+  message?: string
   file?: IErrorFilePath
   batch_messages?: string[]
 }
@@ -14,9 +14,9 @@ export interface IErrorFilePath {
 
 class AppError extends Error {
   public status: number
-  public label: string
-  public code: number | string
-  public message: string
+  public label?: string
+  public code?: number | string
+  public message: string = ''
   public file?: IErrorFilePath
   public batch_messages?: string[]
 
@@ -29,7 +29,7 @@ class AppError extends Error {
     this.status = status
     this.label = label
     this.code = code
-    this.message = message
+    if (message) this.message = message
     this.file = Object.create(null)
     this.batch_messages = batch_messages
     Error.captureStackTrace(this, this.constructor)

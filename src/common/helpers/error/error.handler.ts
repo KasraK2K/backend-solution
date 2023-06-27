@@ -11,11 +11,15 @@ import colour from '../../utils/logColour.util'
 
 const errorHandler = (code: number | string, opt?: IErrorOpt): AppError => {
   // Fill needed Constants
-  const { status: defaultStatus, label, message: defaultMessage } = getErrorObject(code)!
+  const {
+    status: defaultStatus,
+    label: defaultLabel,
+    message: defaultMessage,
+  } = getErrorObject(code)!
 
   const optObject: IErrorOpt = _.assign(opt, {
     status: opt?.status ?? defaultStatus,
-    label,
+    label: opt?.label ?? defaultLabel,
     code,
     message: opt?.message ?? defaultMessage,
   })
@@ -47,7 +51,7 @@ const errorHandler = (code: number | string, opt?: IErrorOpt): AppError => {
     dest: basename(__filename),
     error: logObject,
   })
-  // console.log(logObject)
+  console.log(logObject)
 
   return error
 }
@@ -83,17 +87,19 @@ const statusMap = new Map<IStatusMapKey, IStatusMapObject>([
   [504, { status: 504, label: 'GATEWAY_TIMEOUT',                  message: 'The server is acting as a gateway and cannot get a response in time.' }],
   [511, { status: 511, label: 'NETWORK_AUTHENTICATION_REQUIRED',  message: 'Indicates that the client needs to authenticate to gain network access' }],
   /* ------------------------------ String Errors ----------------------------- */
-  ["P2002",             { status: 400, label: 'P2002',             message: 'Unique constraint failed' }],
-  ["P2025",             { status: 500, label: 'P2025',             message: 'Record to update not found' }],
-  ["23505",             { status: 500, label: '23505',             message: 'Unique key is already exist' }],
-  ["42P01",             { status: 500, label: '42P01',             message: process.env.NODE_ENV !== "production" ? "Database Column Not Found" : SERVER_ERROR }],
-  ["42703",             { status: 500, label: '42P01',             message: process.env.NODE_ENV !== "production" ? "Database Column Not Found" : SERVER_ERROR }],
-  ["42804",             { status: 500, label: '42804',             message: process.env.NODE_ENV !== "production" ? "Argument of WHERE must be type boolean, not type character varying" : SERVER_ERROR }],
-  ["42601",             { status: 500, label: '42601',             message: process.env.NODE_ENV !== "production" ? "Query syntax error" : SERVER_ERROR }],
-  ["22P02",             { status: 500, label: '22P02',             message: process.env.NODE_ENV !== "production" ? "Invalid input value for enum" : SERVER_ERROR }],
-  ["28P01",             { status: 500, label: '28P01',             message: process.env.NODE_ENV !== "production" ? "Database password authentication failed" : SERVER_ERROR }],
-  ["ECONNREFUSED",      { status: 500, label: 'ECONNREFUSED',      message: process.env.NODE_ENV !== "production" ? "Database Connection Refused" : SERVER_ERROR }],
-  ["WRONG_ERROR_CODE",  { status: 500, label: 'WRONG_ERROR_CODE',  message: "Error Code is not a valid" }],
+  ["P2002",                           { status: 400, label: 'P2002',                            message: 'Unique constraint failed' }],
+  ["P2025",                           { status: 500, label: 'P2025',                            message: 'Record to update not found' }],
+  ["23505",                           { status: 500, label: '23505',                            message: 'Unique key is already exist' }],
+  ["42P01",                           { status: 500, label: '42P01',                            message: "Database Column Not Found" }],
+  ["42703",                           { status: 500, label: '42P01',                            message: "Database Column Not Found" }],
+  ["42804",                           { status: 500, label: '42804',                            message: "Argument of WHERE must be type boolean, not type character varying" }],
+  ["42601",                           { status: 500, label: '42601',                            message: "Query syntax error" }],
+  ["22P02",                           { status: 500, label: '22P02',                            message: "Invalid input value for enum" }],
+  ["28P01",                           { status: 500, label: '28P01',                            message: "Database password authentication failed" }],
+  ["ECONNREFUSED",                    { status: 500, label: 'ECONNREFUSED',                     message: "Connection Refused" }],
+  ["WRONG_ERROR_CODE",                { status: 500, label: 'WRONG_ERROR_CODE',                 message: "Error Code is not a valid" }],
+  ["KafkaJSError",                    { status: 500, label: 'KAFKA_DISCONNECTED_ERROR',         message: "The producer is disconnected" }],
+  ["KafkaJSNumberOfRetriesExceeded",  { status: 500, label: 'KAFKA_NUMBER_OF_RETRIES_EXCEEDED', message: "Cannot connect kafka" }],
   /* ----------------------------- Custome Errors ----------------------------- */
   [1000, { status: 500, label: 'CODE_NOT_VALID',                message: "Error Code is not a valid", }],
   [1001, { status: 500, label: 'STATUS_NOT_VALID',              message: "Status Code is not a valid", }],
