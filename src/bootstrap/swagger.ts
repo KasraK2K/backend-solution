@@ -5,7 +5,7 @@ import swaggerAutogen from 'swagger-autogen'
 /* -------------------------------------------------------------------------- */
 
 const routerPath = resolve(process.cwd(), 'src/routes/index.ts')
-const outputFile = resolve(process.cwd(), './swagger-output.json')
+const outputFile = resolve(process.cwd(), './swagger.json')
 
 const doc = {
   info: {

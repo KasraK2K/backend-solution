@@ -45,6 +45,7 @@ const port = process.env.PORT || '3000'
 app.set('trust proxy', true)
 
 /* ------------------------------- Middleware ------------------------------- */
+
 app.use(methodOverride())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

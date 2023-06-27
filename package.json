@@ -7,7 +7,7 @@
     "kill": "lsof -t -i tcp:3000 | xargs kill",
     "prebuild": "rimraf build",
     "start": "npm run kill && NODE_ENV=production node build/src/server.js",
-    "dev": "npm run kill && NODE_ENV=development ts-node-dev --transpile-only --respawn --no-notify --quiet --clear src/server.ts",
+    "dev": "npm run kill && NODE_ENV=development ts-node-dev --transpile-only --respawn --no-notify --quiet --clear --ignore-watch swagger.json src/server.ts",
     "build": "npm run prebuild && NODE_ENV=production tsc",
     "build:dev": "npm run prebuild && NODE_ENV=development tsc",
     "lint": "eslint . --ext .ts",
@@ -30,6 +30,7 @@
     "@types/node": "^20.3.1",
     "@types/pg": "^8.10.2",
     "@types/response-time": "^2.3.5",
+    "@types/swagger-ui-express": "^4.1.3",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "eslint": "^8.43.0",
@@ -80,6 +81,7 @@
     "reflect-metadata": "^0.1.13",
     "response-time": "^2.3.2",
     "sqlstring": "^2.3.3",
+    "swagger-ui-express": "^4.6.3",
     "winston": "^3.9.0",
     "winston-daily-rotate-file": "^4.7.1"
   }

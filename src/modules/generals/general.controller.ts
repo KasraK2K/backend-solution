@@ -15,8 +15,8 @@ class GeneralController extends Controller {
      * Swagger Document
      * 
      * #swagger.tags = ['General']
-     * #swagger.summary = 'Some summary...'
-     * #swagger.description = 'Some description...'
+     * #swagger.summary = 'Check Backend Health'
+     * #swagger.description = 'Check health of backend, third parties and integrations like kafka, firebase, etc'
      * #swagger.operationId = 'Your_operationId_here'
      * #swagger.parameters['id'] = {in: 'body', description: 'id description', required: true, type: 'number'}
      * #swagger.responses[200] = {
