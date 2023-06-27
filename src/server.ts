@@ -22,11 +22,11 @@ import rateLimiterMiddleware from './middlewares/rateLimiter.middleware'
 import multipartMiddleware from './middlewares/multipart.middleware'
 import requestMiddleware from './middlewares/request.middleware'
 import authMiddleware from './middlewares/auth.middleware'
+import responseMiddleware from './middlewares/response.middleware'
+import responseTime from 'response-time'
 import { printInformation } from './common/helpers/information.helper'
 import { ICorsConfig } from './../config/config.interface'
 import { getMetadatas } from './common/helpers/addMetaData.helper'
-import responseTime from 'response-time'
-import restResponseTimeHistogram from './integrations/prometheus/metrics'
 /* -------------------------------------------------------------------------- */
 
 const corsConfig: ICorsConfig = config.get('cors')
@@ -42,8 +42,6 @@ const port = process.env.PORT || '3000'
 
 /* ------------------------------- Application ------------------------------ */
 
-app.set('port', port)
-app.set('server_address', process.env.SERVER_ADDRESS)
 app.set('trust proxy', true)
 
 /* ------------------------------- Middleware ------------------------------- */
@@ -60,22 +58,7 @@ app.use(
   })
 )
 
-app.use(
-  responseTime((req, res, time) => {
-    if (req.route.path) {
-      restResponseTimeHistogram.observe(
-        {
-          business_name: process.env.BUSINESS_NAME,
-          app_name: process.env.APP_NAME,
-          method: req.method,
-          route: req.route.path,
-          status_code: res.statusCode,
-        },
-        time * 1000
-      )
-    }
-  })
-)
+app.use(responseTime(responseMiddleware.calculateTime))
 
 app.use(express.static(resolve(process.cwd(), 'public')))
 
