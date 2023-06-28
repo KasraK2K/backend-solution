@@ -31,7 +31,7 @@ class Controller {
 
         logger.debug(
           `${colour.yellow('response')}: \n${JSON.stringify(
-            { success: true, ...additational, result: 'result is omited' },
+            { success: true, ...additational, data: 'data is omited' },
             undefined,
             4
           )}`,
