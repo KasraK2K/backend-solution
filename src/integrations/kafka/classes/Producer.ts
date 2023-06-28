@@ -45,7 +45,7 @@ class ProducerFactory {
   //   .then(() => {
   //     // Do Something ...
   //   })
-  //   .catch((err) => errorHandler(err.code, { status: 500, message: err.message }))
+  //   .catch((err) => errorHandler(err.name, { status: 500, message: err.message }))
   /* -------------------------------------------------------------------------- */
   public async start(): Promise<void> {
     try {
@@ -64,7 +64,9 @@ class ProducerFactory {
   /* -------------------------------------------------------------------------- */
   // Do not forget to `start` producer then `produce` and after all `shutdown`
   /* -------------------------------------------------------------------------- */
-  // producer.transaction([{ key: 'key-1', value: 'value-1' }]).then(console.log)
+  // producer.transaction([{ key: 'key-1', value: 'value-1' }])
+  //   .then(console.log)
+  //   .catch((err) => errorHandler(err.name, { status: 500, message: err.message }))
   /* -------------------------------------------------------------------------- */
   public async transaction(messages: Message[]): Promise<RecordMetadata[] | void> {
     const transaction = await this.producer.transaction()
@@ -90,7 +92,7 @@ class ProducerFactory {
   // producer
   //   .transactionBatch({
   //     topicMessages: [{ topic: 'default-topic', messages: [{ key: 'key-1', value: 'value-1' }] }],
-  //   }).then(console.log)
+  //   }).then(console.log).catch(err => errorHandler(err.name, { status: 500, message: err.message }))
   /* -------------------------------------------------------------------------- */
   public async transactionBatch(batch: ProducerBatch): Promise<RecordMetadata[] | void> {
     const transaction = await this.producer.transaction()
@@ -112,7 +114,10 @@ class ProducerFactory {
   /* -------------------------------------------------------------------------- */
   // Do not forget to `start` producer then `produce` and after all `shutdown`
   /* -------------------------------------------------------------------------- */
-  // await producer.sendBatch<{ key: string }>([{ key: 'value' }]).then(console.log)
+  // await producer
+  //   .sendBatch<{ key: string }>([{ key: 'value' }])
+  //   .then(console.log)
+  //   .catch((err) => errorHandler(500, { status: 500, message: err.message }))
   /* -------------------------------------------------------------------------- */
   public async sendBatch<T>(messages: T[]): Promise<RecordMetadata[]> {
     const kafkaMessages: Array<Message> = messages.map((message) => {

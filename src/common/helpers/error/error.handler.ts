@@ -116,7 +116,6 @@ const statusMap = new Map<IStatusMapKey, IStatusMapObject>([
   [1012, { status: 400, label: 'API_KEY_MISSING',               message: "Api Key missing", }],
   [1013, { status: 401, label: 'API_KEY_INVALID',               message: "Api Key invalid", }],
   [1014, { status: 405, label: 'METHOD_NOT_ALLOWED',            message: "Method not allowed", }],
-
 ])
 
 const getErrorObject = (error_code: number | string) => {

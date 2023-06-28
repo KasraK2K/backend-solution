@@ -41,9 +41,7 @@ class ConsumerFactory {
   //   const prefix = `${topic}[${partition} | ${message.offset}] / ${message.timestamp}`
   //   console.log(`- ${prefix} ${message.key}#${message.value}`)
   // }
-  // consumer
-  //   .startConsumer(callback)
-  //   .catch((err: any) => errorHandler(err.code, { status: 500, message: err.message }))
+  // consumer.startConsumer(callback).catch((err) => errorHandler(err.name))
   /* -------------------------------------------------------------------------- */
   public async startConsumer(
     callback: (messagePayload: EachMessagePayload) => void
@@ -73,7 +71,7 @@ class ConsumerFactory {
   // }
   // consumer
   //   .startBatchConsumer(batchCallback)
-  //   .catch((err: any) => errorHandler(err.code, { status: 500, message: err.message }))
+  //   .catch((err) => errorHandler(err.name, { status: 500, message: err.message }))
   /* -------------------------------------------------------------------------- */
   public async startBatchConsumer(
     callback: (eachBatchPayload: EachBatchPayload) => void
