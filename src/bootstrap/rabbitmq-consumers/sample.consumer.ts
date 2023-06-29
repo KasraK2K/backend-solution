@@ -7,7 +7,7 @@
 /* ------------------------------ Node Modules ------------------------------ */
 import { basename } from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
-import amqp from 'amqplib/callback_api'
+import amqp, { Connection, Channel, Message } from 'amqplib/callback_api'
 import config from 'config'
 import path from 'path'
 /* ----------------------------- Custom Modules ----------------------------- */
@@ -22,10 +22,10 @@ const uri = process.env.RBBITMQ_URI
 const queue_name = 'sample-consumer-queue'
 
 if (uri && uri.length && jobConfig.activeConsumers.includes(filename))
-  amqp.connect(uri, (connectionError, connection) => {
+  amqp.connect(uri, (connectionError, connection: Connection) => {
     if (connectionError) throw connectionError
 
-    connection.createChannel((createChannelError, channel) => {
+    connection.createChannel((createChannelError: any, channel: Channel) => {
       if (createChannelError) throw createChannelError
 
       /**
@@ -44,7 +44,7 @@ if (uri && uri.length && jobConfig.activeConsumers.includes(filename))
 
       channel.consume(
         queue_name,
-        (message) => {
+        (message: Message | null) => {
           if (message) {
             const content: Record<string, any> = JSON.parse(message.content.toString())
 

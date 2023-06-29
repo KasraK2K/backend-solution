@@ -74,7 +74,7 @@ app.use('*', (error: AppError, req, res, __) => {
     return res.status(error.status).json({ success: false, ...additational, error })
   } else {
     logger.error(colour.red('Unknown type error:'), { dest: basename(__filename), error })
-    return res.status().json({ success: false, ...additational, error })
+    return res.status(500).json({ success: false, ...additational, error })
   }
 })
 
