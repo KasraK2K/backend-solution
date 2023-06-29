@@ -21,6 +21,10 @@ module.exports = {
       instance_var: `backend.${process.env.NODE_ENV}`,
       instances: process.env.NODE_ENV === 'development' ? '1' : 'max',
       exec_mode: 'cluster',
+      ignore_watch: ['node_modules', './swagger.json'],
+      watch_options: {
+        followSymlinks: false,
+      },
 
       // default variables
       env: {

@@ -11,7 +11,8 @@
 //===============================================================================
 
 import 'reflect-metadata'
-import './envirement'
+import './extend'
+import './environment'
 import './requirements'
 
 import mongoClient from './mongodb'
