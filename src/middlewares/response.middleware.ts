@@ -8,7 +8,6 @@ import restResponseTimeHistogram from '../integrations/prometheus/metrics'
 class ResponseMiddleware extends Middleware {
   calculateTime(req: Request, res: Response, time: number) {
     if (req.route?.path) {
-      console.log(time)
       restResponseTimeHistogram.observe(
         {
           business_name: process.env.BUSINESS_NAME,
