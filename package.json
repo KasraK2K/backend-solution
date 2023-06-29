@@ -6,7 +6,7 @@
   "scripts": {
     "kill": "lsof -t -i tcp:3000 | xargs kill",
     "prebuild": "rimraf build",
-    "start": "NODE_ENV=production node build/src/server.js",
+    "start": "NODE_ENV=production node build/server.js",
     "dev": "NODE_ENV=development ts-node-dev --transpile-only --respawn --no-notify --quiet --clear --ignore-watch swagger.json src/server.ts",
     "build": "npm run prebuild && NODE_ENV=production  webpack -- --color",
     "build:dev": "npm run prebuild && NODE_ENV=development webpack -- --color",
