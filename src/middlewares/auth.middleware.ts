@@ -18,7 +18,7 @@ class AuthMiddleware extends Middleware {
     const routerVersion = applicationConfig.router_version
     const ignoreToken: string[] = applicationConfig.request.ignoreToken
     const ignoreApikeys: string[] = applicationConfig.request.ignoreApiKey
-    const responseAdditational = {
+    const metaData = {
       api_version: applicationConfig.api_version,
       front_version: applicationConfig.front_version,
       portal_version: applicationConfig.portal_version,
@@ -43,38 +43,51 @@ class AuthMiddleware extends Middleware {
       const api_key = req.headers[applicationConfig.apiKeyHeader] as string
       if (!api_key) {
         const error = errorHandler(1012)
-        return res.status(error.status).json({ ...responseAdditational, error })
+        return res.status(error.status).json({ ...metaData, error })
       }
 
       const { valid, data: _data } = tokenHelper.verify(api_key)
       if (!valid) {
         const error = errorHandler(1013)
-        return res.status(error.status).json({ ...responseAdditational, error })
+        return res.status(error.status).json({ ...metaData, error })
       }
     }
 
     /* ------------------------------- Check Token ------------------------------ */
     if (checkToken) {
       // REVIEW : Why token type is in req.body. Everything about token should be in to the token not request
-      const tokenType = req.body?.token_type ? req.body.token_type : ''
+      const tokenType: string = req.body?.token_type ? req.body.token_type : ''
 
       let cypherToken = req.headers[applicationConfig.bearerHeader] as string
       if (cypherToken && cypherToken.startsWith(`${applicationConfig.bearer} `)) {
         cypherToken = cypherToken.slice(applicationConfig.bearer.length + 1)
 
-        const { valid, data } = tokenHelper.verify(cypherToken)
-        if (!valid) {
-          const error = errorHandler(1010)
-          return res.status(error.status).json({ ...responseAdditational, error })
-        } else res.locals.tokenData = data
+        if (tokenType === 'app-v2') this.checkOldTokenCheck(res, cypherToken, metaData)
+        else this.checkNewTokenCheck(res, cypherToken, metaData)
       } else {
         const error = errorHandler(1011)
-        return res.status(error.status).json({ ...responseAdditational, error })
+        return res.status(error.status).json({ ...metaData, error })
       }
     }
     /* -------------------------------------------------------------------------- */
 
     next()
+  }
+
+  private checkNewTokenCheck(res: Response, cypherToken: string, metaData: Record<string, any>) {
+    const { valid, data } = tokenHelper.verify(cypherToken)
+    if (!valid) {
+      const error = errorHandler(1010)
+      return res.status(error.status).json({ ...metaData, error })
+    } else res.locals.tokenData = data
+  }
+
+  private checkOldTokenCheck(res: Response, cypherToken: string, metaData: Record<string, any>) {
+    const { valid, data } = jwtUtil.verifyJwt(cypherToken)
+    if (!valid) {
+      const error = errorHandler(1010)
+      return res.status(error.status).json({ ...metaData, error })
+    } else res.locals.tokenData = data
   }
 }
 
