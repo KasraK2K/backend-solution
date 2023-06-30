@@ -45,7 +45,7 @@ class Controller {
       .catch((error: AppError) => {
         const additational = getMetadatas(req)
 
-        return res.status(error.status).json({ success: false, ...additational, error })
+        return res.status(error.status ?? 500).json({ success: false, ...additational, error })
       })
   }
 }

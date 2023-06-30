@@ -1,5 +1,5 @@
 /* ------------------------------ Dependencies ------------------------------ */
-import knex from 'knex'
+import Knex from 'knex'
 import config from 'config'
 /* ----------------------------- Custom Modules ----------------------------- */
 import { IPostgresConfig } from '../../config/config.interface'
@@ -11,17 +11,17 @@ import { IPostgresConfig } from '../../config/config.interface'
 /*                        Refrence: https://knexjs.org/                       */
 /* -------------------------------------------------------------------------- */
 /* Insert */
-// pg('users').insert({ name: 'kasra' }).returning('*')
+// knex('users').insert({ name: 'kasra' }).returning('*')
 
 /* Delete */
-// await pg('users').where({ id: 2 }).delete()
+// await knex('users').where({ id: 2 }).delete()
 
 /* Raw Select */
-// const result = await pg.raw('SELECT * FROM ?? LIMIT ??', ['users', 1])
+// const result = await knex.raw('SELECT * FROM ?? LIMIT ??', ['users', 1])
 // console.log({ count: result.rowCount, result: result.rows })
 
 /* Raw Insert */
-// pg.raw(
+// knex.raw(
 //   `INSERT INTO users
 //   (email, password,
 //     contact_number, first_name, surname, is_verified)
@@ -33,7 +33,7 @@ import { IPostgresConfig } from '../../config/config.interface'
 //   .catch(console.error)
 
 /* Transaction */
-// const trx = await pg.transaction()
+// const trx = await knex.transaction()
 //   trx
 //     .raw('SELECT * FROM ??', ['users'])
 //     .then((result) => {
@@ -45,7 +45,7 @@ import { IPostgresConfig } from '../../config/config.interface'
 
 const pgConfig: IPostgresConfig = config.get('database.postgres')
 
-const pg = knex({
+const knex = Knex({
   client: 'pg',
   connection: {
     host: pgConfig.host,
@@ -60,4 +60,4 @@ const pg = knex({
   jsonbSupport: true,
 })
 
-export default pg
+export default knex

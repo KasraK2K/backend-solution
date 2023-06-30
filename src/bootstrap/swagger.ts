@@ -29,6 +29,36 @@ const doc = {
         surname: { type: 'string', description: 'user surname' },
       },
     },
+    Auth: {
+      type: 'object',
+      properties: {
+        token: { type: 'string' },
+        user: {
+          type: 'object',
+          properties: {
+            id: { type: 'string' },
+            email: { type: 'integer' },
+            contact_number: { type: 'string' },
+            first_name: { type: 'string' },
+            surname: { type: 'string' },
+            login_type: { type: 'integer' },
+            login_id: { type: 'string' },
+            is_active: { type: 'boolean' },
+            is_verified: { type: 'boolean' },
+            is_blocked: { type: 'boolean' },
+            is_archive: { type: 'boolean' },
+            business_name: { type: 'string' },
+            business_category: { type: 'string' },
+            business_size: { type: 'string' },
+            permission: { type: 'integer' },
+            partner_id: { type: 'integer' },
+            created_at: { type: 'string' },
+            updated_at: { type: 'string' },
+            archived_at: { type: 'string' },
+          },
+        },
+      },
+    },
   },
 }
 swaggerAutogen(outputFile, [routerPath], doc)
