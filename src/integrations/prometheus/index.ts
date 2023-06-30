@@ -18,7 +18,7 @@ const startMetricsServer = (port) => {
 
   app.listen(port, () =>
     console.log(
-      `${colour.love('Prometheus Metrics')} running on:\t ${colour.blue.underline(
+      `${colour.love('Prometheus Metrics')} running on:\t ${colour.green.underline(
         process.env.PROMETHEUS_SERVER_ADDRESS
       )}`
     )
