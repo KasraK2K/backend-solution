@@ -68,8 +68,13 @@ export const printInformation = (port: string) => {
   }
 
   console.log(
-    `${colour.love('HTTP Server')} running on:\t\t ${colour.blue.underline(
+    `${colour.love('HTTP Server')} running on:\t\t ${colour.green.underline(
       process.env.SERVER_ADDRESS
+    )}`
+  )
+  console.log(
+    `${colour.love('Swagger')} running on:\t\t ${colour.green.underline(
+      `${process.env.SERVER_ADDRESS}/swagger`
     )}`
   )
 }
