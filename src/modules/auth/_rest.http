@@ -1,0 +1,27 @@
+@module={{host}}/auth
+@token = {{loginLocalUser.response.body.data.token}}
+
+# @name loginLocalUser
+POST {{module}}/login-local-user
+Content-Type: application/json
+
+{
+  "filter": {
+    "email": "kasra_k2k@yahoo.com",
+    "password": "12345678"
+  }
+}
+
+###
+
+# @name registerLocalUser
+POST {{module}}/register-local-user
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "data": {
+    "email": "kasra_k2k2k@yahoo.com",
+    "password": "12345678"
+  }
+}

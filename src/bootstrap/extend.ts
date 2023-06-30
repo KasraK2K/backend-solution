@@ -12,6 +12,7 @@ declare namespace Express {
   export interface Request {
     // add custom property like key: string
     process_id: string
+    user?: Record<string, any>
   }
 
   export interface Response {
