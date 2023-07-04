@@ -17,11 +17,11 @@ import router from './routes'
 import AppError from './common/helpers/error/AppError'
 import logger from './common/helpers/logger.helper'
 import colour from './common/utils/logColour.util'
-import startMetricsServer from './integrations/prometheus'
+import startMetricsServer from './apps/prometheus'
 import rateLimiterMiddleware from './middlewares/rateLimiter.middleware'
 import multipartMiddleware from './middlewares/multipart.middleware'
 import requestMiddleware from './middlewares/request.middleware'
-import authMiddleware from './middlewares/auth.middleware'
+// import authMiddleware from './middlewares/auth.middleware'
 import responseMiddleware from './middlewares/response.middleware'
 import responseTime from 'response-time'
 import { printInformation } from './common/helpers/information.helper'
@@ -80,5 +80,5 @@ app.use('*', (error: AppError, req, res, __) => {
 
 server.listen(port).on('listening', async () => {
   printInformation(port)
-  startMetricsServer(process.env.PROMETHEUS_PORT)
+  startMetricsServer()
 })
