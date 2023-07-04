@@ -27,6 +27,8 @@ import responseTime from 'response-time'
 import { printInformation } from './common/helpers/information.helper'
 import { ICorsConfig } from './../config/config.interface'
 import { getMetadatas } from './common/helpers/addMetaData.helper'
+import { startGrpcServers } from './apps/gRPC'
+import { gRPCServer } from './apps/gRPC/constants/enums'
 /* -------------------------------------------------------------------------- */
 
 const corsConfig: ICorsConfig = config.get('cors')
@@ -81,4 +83,5 @@ app.use('*', (error: AppError, req, res, __) => {
 server.listen(port).on('listening', async () => {
   printInformation(port)
   startMetricsServer()
+  startGrpcServers([gRPCServer.GREETINGS])
 })

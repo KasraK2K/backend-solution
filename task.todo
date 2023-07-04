@@ -2,105 +2,47 @@
   "todotree": {
     "tree": [
       {
-        "key": 1687336691926,
+        "key": 1688467752304,
         "children": [],
         "todo": {
-          "content": "Create logger with winstone or something better",
-          "id": 1687336691926,
-          "level": "default",
-          "done": true,
-          "start": 1687336691926,
-          "focus": false,
-          "end": 1687421231253
-        }
-      },
-      {
-        "key": 1687336706775,
-        "children": [],
-        "todo": {
-          "content": "Create needed integrations (mailgun, firebase, prometheus)",
-          "id": 1687336706775,
-          "level": "default",
-          "done": true,
-          "start": 1687336706775,
-          "focus": false,
-          "end": 1687778729761
-        }
-      },
-      {
-        "key": 1687336743816,
-        "children": [],
-        "todo": {
-          "content": "Create PostgreSQL Pool",
-          "id": 1687336743816,
-          "level": "default",
-          "done": true,
-          "start": 1687336743816,
-          "focus": false,
-          "end": 1687778732496
-        }
-      },
-      {
-        "key": 1687336809016,
-        "children": [],
-        "todo": {
-          "content": "Create Mongodb connection",
-          "id": 1687336809016,
-          "level": "default",
-          "done": true,
-          "start": 1687336809016,
-          "focus": false,
-          "end": 1687778733781
-        }
-      },
-      {
-        "key": 1687336863352,
-        "children": [],
-        "todo": {
-          "content": "Use Chalk",
-          "id": 1687336863352,
-          "level": "default",
-          "done": true,
-          "start": 1687336863352,
-          "focus": false,
-          "end": 1687421239983
-        }
-      },
-      {
-        "key": 1687357547185,
-        "children": [],
-        "todo": {
-          "content": "Use Knex or better orm to easy crud",
-          "id": 1687357547185,
-          "level": "default",
+          "content": "Square integration",
+          "id": 1688467752304,
+          "level": "danger",
           "done": false,
-          "start": 1687357547186
+          "start": 1688467752304
         }
       },
       {
-        "key": 1687357904956,
+        "key": 1688467759325,
         "children": [],
         "todo": {
-          "content": "Use Winstone or better",
-          "id": 1687357904956,
-          "level": "default",
-          "done": true,
-          "start": 1687357904956,
-          "focus": false,
-          "end": 1687421226411
+          "content": "gRPC login",
+          "id": 1688467759325,
+          "level": "warning",
+          "done": false,
+          "start": 1688467759325
         }
       },
       {
-        "key": 1687421241616,
+        "key": 1688467805171,
         "children": [],
         "todo": {
-          "content": "Create colour function",
-          "id": 1687421241616,
-          "level": "default",
-          "done": true,
-          "start": 1687421241616,
-          "focus": false,
-          "end": 1687421255487
+          "content": "loggin with third parties",
+          "id": 1688467805171,
+          "level": "warning",
+          "done": false,
+          "start": 1688467805171
+        }
+      },
+      {
+        "key": 1688467767760,
+        "children": [],
+        "todo": {
+          "content": "create and roleback migration",
+          "id": 1688467767760,
+          "level": "success",
+          "done": false,
+          "start": 1688467767760
         }
       }
     ],
@@ -114,6 +56,6 @@
     "autoSort": false,
     "showEndTime": false,
     "lang": "en",
-    "version": "1687778733817"
+    "version": "1688467828513"
   }
 }
