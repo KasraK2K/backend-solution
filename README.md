@@ -54,7 +54,7 @@ Some folder should explain to undrestand what am i doing in this project.
 2. /**docs**: When you run `docs` command, the project create documentation in this folder.
 3. **/logs**: If you change `logger.logOnFile` to true the backend logs save in this folder and in production i dont make logs pretty but in development i have forced that to be pretty to make it more redable.
 4. **/src**: After all everything we talk about that is in this folder so i have to explain this folder separatly but i would like to say the code of application is there.
-&nbsp;
+   &nbsp;
 
 ### src/app
 
@@ -80,7 +80,7 @@ This folder is for holding global and public features like `decorators`, general
 
 ### src/integrations
 
-Everyday we need to use some third parties such as `firebase` or `twilio` or `mailgun` or we need to create some part of code  and never think about how it work again and just focusing to our development for example using `BullMQ` and create queue worker by using integration and it should be simple such as calling sdk so i create integrations folder to put every integrations in there and now we can everyday add new integrations and it can be copy to other projects without any trible.
+Everyday we need to use some third parties such as `firebase` or `twilio` or `mailgun` or we need to create some part of code and never think about how it work again and just focusing to our development for example using `BullMQ` and create queue worker by using integration and it should be simple such as calling sdk so i create integrations folder to put every integrations in there and now we can everyday add new integrations and it can be copy to other projects without any trible.
 &nbsp;
 
 ### src/middlewares
