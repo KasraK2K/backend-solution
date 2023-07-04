@@ -21,6 +21,7 @@ import { createRedisClient } from './redis'
 import './cron-jobs/index'
 import './rabbitmq-consumers'
 import './swagger'
+import '../apps/gRPC/server'
 
 // starterConfig.boot.forEach(async (moduleName) => {
 //   await import(`./${moduleName}`).catch((err) => console.log(err.message))
