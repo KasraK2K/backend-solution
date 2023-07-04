@@ -6,10 +6,11 @@
   "scripts": {
     "kill": "lsof -t -i tcp:3000 | xargs kill",
     "prebuild": "rimraf build",
-    "start": "NODE_ENV=production node build/server.js",
-    "dev": "NODE_ENV=development ts-node-dev --transpile-only --respawn --no-notify --quiet --clear --ignore-watch swagger.json src/server.ts",
     "build": "npm run prebuild && NODE_ENV=production  webpack -- --color",
+    "start": "NODE_ENV=production node build/server.js",
+    "start:dev": "NODE_ENV=development node build/server.js",
     "build:dev": "npm run prebuild && NODE_ENV=development webpack -- --color",
+    "dev": "NODE_ENV=development ts-node-dev --transpile-only --respawn --no-notify --quiet --clear --ignore-watch swagger.json src/server.ts",
     "pm2": "NODE_ENV=production pm2 start ecosystem.config.js --env production",
     "pm2:dev": "NODE_ENV=development pm2 start ecosystem.config.js --env development",
     "lint": "eslint . --ext .ts",
