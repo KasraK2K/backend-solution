@@ -35,6 +35,17 @@
         }
       },
       {
+        "key": 1688541159164,
+        "children": [],
+        "todo": {
+          "content": "write BullMQ integration again by just one connection at all",
+          "id": 1688541159164,
+          "level": "warning",
+          "done": false,
+          "start": 1688541159164
+        }
+      },
+      {
         "key": 1688467767760,
         "children": [],
         "todo": {
@@ -56,6 +67,6 @@
     "autoSort": false,
     "showEndTime": false,
     "lang": "en",
-    "version": "1688467828513"
+    "version": "1688541197698"
   }
 }
