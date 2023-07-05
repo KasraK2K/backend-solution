@@ -1,0 +1,4 @@
+{
+  "secret_key": "__PRODUCTION_SECRET_KEY__",
+  "publishable_key": "__PRODUCTION_PUBLIC_KEY__"
+}
