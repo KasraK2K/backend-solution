@@ -17,8 +17,8 @@ module.exports = {
   watch: NODE_ENV === 'development',
   externals: [nodeExternals()],
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'server.js',
+    path: path.resolve(process.cwd(), 'build'),
+    filename: 'src/server.js',
   },
   resolve: {
     extensions: ['.ts', '.js'],
@@ -27,6 +27,7 @@ module.exports = {
     rules: [{ test: /\.ts$/, use: ['ts-loader'] }],
   },
   plugins: [
+    // @ts-ignore
     new WebpackShellPluginNext({
       onAfterDone: { scripts: ["echo 'Build complete!'"] },
     }),
