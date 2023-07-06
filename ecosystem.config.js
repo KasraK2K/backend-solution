@@ -14,7 +14,7 @@ module.exports = {
     {
       name: `backend.${process.env.NODE_ENV}`,
       log_date_format: 'YYYY-MM-DD HH:mm Z',
-      script: process.env.NODE_ENV === 'development' ? 'ts-node' : 'build/server.js',
+      script: process.env.NODE_ENV === 'development' ? 'ts-node' : 'build/src/server.js',
       args: '-r tsconfig-paths/register src/server.ts',
       autorestart: true,
       watch: process.env.NODE_ENV === 'development',
