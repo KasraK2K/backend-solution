@@ -1,0 +1,7 @@
+@module={{host}}/general
+
+###
+
+# @name health-check
+GET {{module}}/health-check
+Content-Type: application/json

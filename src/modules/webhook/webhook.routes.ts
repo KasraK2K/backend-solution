@@ -1,15 +1,15 @@
 /* ------------------------------ Dependencies ------------------------------ */
 import express from 'express'
-/* ----------------------------- Custom Modules ----------------------------- */
-import responseCache from '../../common/helpers/cache.helper'
+/* -------------------------------------------------------------------------- */
+
 /* -------------------------------- Constants ------------------------------- */
 const router = express.Router()
 /* -------------------------------------------------------------------------- */
 
 /* ------------------------------- Controllers ------------------------------ */
-import generalController from '../generals/general.controller'
+import webhookController from './webhook.controller'
 /* -------------------------------------------------------------------------- */
 
-router.get('/health-check', generalController.healthCheck)
+router.get('/square/auth/callback', webhookController.squareAuthCallback)
 
 export default router

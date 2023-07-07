@@ -1,0 +1,18 @@
+###------------------------------ Base Configs ------------------------------###
+@auth={{host}}/auth
+@token = {{loginLocalUser.response.body.data.token}}
+
+# @name loginLocalUser
+POST {{auth}}/login-local-user
+Content-Type: application/json
+
+{
+  "filter": {
+    "email": "kasra_k2k@yahoo.com",
+    "password": "12345678"
+  }
+}
+###--------------------------------------------------------------------------###
+
+@module={{host}}/webhook
+

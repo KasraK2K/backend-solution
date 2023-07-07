@@ -6,6 +6,12 @@ import cryptoUtil from '../../../common/utils/crypto.util'
 class SquareAuth {
   constructor(private superThis: Square) {}
 
+  /* -------------------------------------------------------------------------- */
+  /*                                 How To Use                                 */
+  /* -------------------------------------------------------------------------- */
+  // const scopes = ['ITEMS_READ','MERCHANT_PROFILE_READ','PAYMENTS_WRITE_ADDITIONAL_RECIPIENTS','PAYMENTS_WRITE','PAYMENTS_READ']
+  // const url = square.auth.getUrl(scopes, '550e8400-e29b-41d4-a716-446655440000')
+  /* -------------------------------------------------------------------------- */
   getUrl(scopes: string[], user_uid: string): string {
     const state = cryptoUtil.encrypt(user_uid)
 
