@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+service Auth {
+  rpc Login(AuthRequest) returns (AuthResponse) {}
+  rpc Register(AuthRequest) returns (AuthResponse) {}
+}
+
+message AuthRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message AuthResponse {
+  string token = 1;
+  User user = 2;
+}
+
+message User {
+  int32 id = 1;
+  string uid = 2;
+  string first_name = 3;
+  string surname = 4;
+  string contact_number = 5;
+  string email = 6;
+  bool is_active = 7;
+  bool is_verify = 8;
+  bool is_block = 9;
+  bool is_archive = 10;
+  repeated string roles = 11;
+  string created_at = 12;
+  string updated_at = 13;
+  string archived_at = 14;
+}

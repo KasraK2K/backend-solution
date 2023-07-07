@@ -23,14 +23,7 @@ passport.use(
     async (email: string, password: string, done: (...args: any[]) => any) => {
       try {
         await knex('users')
-          .insert({
-            email: email.toLowerCase(),
-            password: bcryptHelper.hashGen(password),
-            contact_number: '09123456789',
-            first_name: 'Kasra',
-            surname: 'Karami',
-            is_verified: true,
-          })
+          .insert({ email: email.toLowerCase(), password: bcryptHelper.hashGen(password) })
           .returning('*')
           .then((result) => handleResult(result, done))
           .catch((err) => done(errorHandler(err.code), false, { message: 'User not created' }))
@@ -52,7 +45,6 @@ passport.use(
       passwordField: 'filter[]password',
     },
     async (email: string, password: string, done: (...args: any[]) => any) => {
-      email = email.toLowerCase()
       try {
         await knex('users')
           .select('*')

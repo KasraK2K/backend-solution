@@ -50,14 +50,14 @@ class AuthController extends Controller {
 
     passport.authenticate(
       AuthStrategy.USER_LOCAL_REGISTER,
-      async (err, user, _: Record<string, any>) => {
+      async (err, data: { user: Record<string, any>; token: string }, _: Record<string, any>) => {
         if (err) {
           const error = errorHandler(err.code)
           const additational = getMetadatas(req)
           return res.status(error.status).json({ success: false, ...additational, error })
         } else {
-          req.user = user
-          return addMetaData(req, res, user)
+          req.user = data.user
+          return addMetaData(req, res, data)
         }
       }
     )(req, res, next)
@@ -103,14 +103,14 @@ class AuthController extends Controller {
 
     passport.authenticate(
       AuthStrategy.USER_LOCAL_LOGIN,
-      async (err, user, _: Record<string, any>) => {
+      async (err, data: { user: Record<string, any>; token: string }, _: Record<string, any>) => {
         if (err) {
           const error = errorHandler(err.code)
           const additational = getMetadatas(req)
           return res.status(error.status).json({ success: false, ...additational, error })
         } else {
-          req.user = user
-          return addMetaData(req, res, user)
+          req.user = data.user
+          return addMetaData(req, res, data)
         }
       }
     )(req, res, next)
