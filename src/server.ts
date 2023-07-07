@@ -26,7 +26,7 @@ import responseMiddleware from './middlewares/response.middleware'
 import responseTime from 'response-time'
 import { printInformation } from './common/helpers/information.helper'
 import { ICorsConfig } from './../config/config.interface'
-import { getMetadatas } from './common/helpers/addMetaData.helper'
+import { addMetaData, getMetadatas } from './common/helpers/addMetaData.helper'
 import { startGrpcServer } from './apps/gRPC'
 /* -------------------------------------------------------------------------- */
 
@@ -69,6 +69,31 @@ app.use(requestMiddleware.isMethodAllowed)
 // app.use(authMiddleware.auth)
 
 app.use('/', router)
+
+app.get('/square/auth/callback', async (req, res) => {
+  if (!req.query['error'] && req.query['response_type'] === 'code') {
+    const code = req.query['code'] as string
+    const square = new Square()
+    const state = req.query['state'] as string
+    const user_uid = cryptoUtil.decrypt(state)
+
+    square.auth
+      .obtainToken(code)
+      .then((response) => {
+        const result = response.result
+        const { accessToken, refreshToken, expiresAt, merchantId } = result
+
+        // TODO : save result somewhere
+
+        return res.redirect(`https://www.example.com/integrate/${user_uid}?status=ok`)
+      })
+      .catch((error) => {
+        const additational = getMetadatas(req)
+        return res.status(500).json({ success: false, ...additational, error })
+      })
+  }
+})
+
 app.use('*', (error: AppError, req, res, __) => {
   const additational = getMetadatas(req)
   if (error instanceof AppError) {
@@ -84,3 +109,23 @@ server.listen(port).on('listening', async () => {
   startMetricsServer()
   startGrpcServer()
 })
+
+/* -------------------------------------------------------------------------- */
+/*                                NOTE : Square                               */
+/* -------------------------------------------------------------------------- */
+import Square from './integrations/square'
+import cryptoUtil from './common/utils/crypto.util'
+
+const square = new Square()
+
+const scopes = [
+  'ITEMS_READ',
+  'MERCHANT_PROFILE_READ',
+  'PAYMENTS_WRITE_ADDITIONAL_RECIPIENTS',
+  'PAYMENTS_WRITE',
+  'PAYMENTS_READ',
+]
+
+const url = square.auth.getUrl(scopes, '123kasra456')
+console.log(url)
+/* -------------------------------------------------------------------------- */
