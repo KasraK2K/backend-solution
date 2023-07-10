@@ -109,6 +109,7 @@
     "redis": "^4.6.7",
     "reflect-metadata": "^0.1.13",
     "response-time": "^2.3.2",
+    "socket.io": "^4.7.1",
     "sqlstring": "^2.3.3",
     "square": "^28.0.1",
     "stripe": "^12.11.0",
