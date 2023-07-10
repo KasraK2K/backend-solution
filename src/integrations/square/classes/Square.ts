@@ -1,4 +1,10 @@
-import { Client, Environment, SquareAuth } from '..'
+import { Client, Environment, SquareAuth, SquareCatalog } from '..'
+
+/* -------------------------------------------------------------------------- */
+/*                                 How to Use                                 */
+/* -------------------------------------------------------------------------- */
+// const square = new Square()
+/* -------------------------------------------------------------------------- */
 
 class Square {
   public certificate = require('../certificate.json')
@@ -14,6 +20,7 @@ class Square {
   })
 
   public auth = new SquareAuth(this)
+  public catalog = new SquareCatalog(this)
 }
 
 export default Square

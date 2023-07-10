@@ -28,7 +28,7 @@ class WebhookController extends Controller {
 
           // TODO : save result somewhere
 
-          return res.redirect(`https://www.example.com/integrate/${user_uid}?status=ok`)
+          return res.redirect(`https://www.google.com/?status=ok`)
         })
         .catch((error) => {
           const additational = getMetadatas(req)
