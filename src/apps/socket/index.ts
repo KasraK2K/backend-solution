@@ -2,10 +2,13 @@
 import { io } from '../../application'
 import colour from '../../common/utils/logColour.util'
 /* ----------------------------- Events Handler ----------------------------- */
-import { connectionEvent } from './events/connection.handler'
+import connectionEvent from './events/connection.handler'
 /* -------------------------------------------------------------------------- */
 
-const events = [{ name: 'connection', callback: connectionEvent }]
+// prettier-ignore
+const events = [
+  { name: 'connection', callback: connectionEvent },
+]
 
 const registerSocketServer = () => {
   for (const event of events) {
