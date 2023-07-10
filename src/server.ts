@@ -1,5 +1,6 @@
 /* ------------------------------ Node Modules ------------------------------ */
 import { basename } from 'node:path'
+import _ from 'lodash'
 /* ----------------------------- Custom Modules ----------------------------- */
 import { server, port } from './application'
 import startMetricsServer from './apps/prometheus'
@@ -18,7 +19,7 @@ process.on('unhandledRejection', (reason, p) => {
     dest: basename(__filename),
     error: reason,
   })
-  console.error(colour.red(`{red}Unhandled Rejection at: Promise ${p} Reson: ${reason}{reset}`))
+  console.error(colour.red(`Unhandled Rejection`), { p, reason })
 })
 
 /* -------------------------------------------------------------------------- */
@@ -36,4 +37,5 @@ server.listen(port).on('listening', async () => {
   registerSocketServer()
   startMetricsServer()
   startGrpcServer()
+  /* -------------------------------------------------------------------------- */
 })
